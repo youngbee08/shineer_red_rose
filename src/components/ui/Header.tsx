@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { HiOutlineMenuAlt3, HiX } from "react-icons/hi";
+import {  HiX } from "react-icons/hi";
 import { AnimatePresence, motion } from "framer-motion";
 import navitems from "../../lib/navitems";
+import { BiMenu } from "react-icons/bi";
 
 const Header = () => {
   const location = useLocation();
@@ -20,35 +21,26 @@ const Header = () => {
   }, [location.pathname]);
 
   return (
-    <header className="sticky top-0 z-50">
+    <header className="">
       <motion.div
-        className="bg-white border-b border-secondary-dark/60"
+        className="border-b border-secondary-dark/60 bg-white"
         initial={{ y: -12, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.25, ease: "easeOut" }}
       >
-        <nav className="app-container h-16 flex items-center gap-3">
-          <div className="flex items-center gap-3">
-            <motion.button
-              onClick={() => setOpen(true)}
-              className="md:hidden inline-flex items-center justify-center w-10 h-10 rounded-xl hover:bg-black/5 transition"
-              aria-label="Open menu"
-              whileTap={{ scale: 0.95 }}
-            >
-              <HiOutlineMenuAlt3 className="text-2xl text-primary" />
-            </motion.button>
-
+        <nav className="app-container flex items-center gap-4 lg:h-16 h-20 py-2">
+          <div className="flex items-center gap-3 lg:gap-4">
             <Link to="/" className="flex flex-col leading-tight">
-              <span className="font-display text-lg font-bold text-tetiary">
-                RedRose by Gladys
+              <span className="font-display text-sm font-bold text-tetiary lg:text-lg">
+                RedRose by Olaw
               </span>
-              <span className="text-[14px] text-neutral-soft">
+              <span className="text-xs text-neutral-soft">
                 Affiliate business owner of Affluence Global
               </span>
             </Link>
           </div>
 
-          <div className="hidden md:flex flex-1 items-center justify-center gap-8">
+          <div className="hidden lg:flex flex-1 items-center justify-center gap-10">
             {navitems.map((item) => {
               const active = location.pathname === item.path;
               return (
@@ -56,76 +48,77 @@ const Header = () => {
                   key={item.name}
                   to={item.path}
                   className={[
-                    "text-sm font-semibold transition relative",
+                    "relative text-xs font-medium transition",
                     active
                       ? "text-primary"
                       : "text-neutral-dark hover:text-primary",
                   ].join(" ")}
                 >
                   {item.name}
-                  {active && (
-                    <motion.span
-                      layoutId="activeNav"
-                      className="absolute -bottom-2 left-0 right-0 mx-auto h-0.5 w-6 rounded-full bg-primary"
-                      transition={{ duration: 0.25, ease: "easeOut" }}
-                    />
-                  )}
                 </Link>
               );
             })}
           </div>
 
-          <div className="hidden md:flex justify-end">
+          <div className="hidden lg:flex justify-end">
             <motion.div whileHover={{ y: -1 }} whileTap={{ scale: 0.98 }}>
               <Link
-                to="tel:+234814 004 1861"
-                className=" items-center justify-center h-10 rounded-xl bg-primary text-white px-4 text-sm font-semibold hover:brightness-110 transition lg:inline-flex hidden"
+                to="tel:+13175313547"
+                className="hidden lg:inline-flex py-2 items-center justify-center rounded-[1.75rem] bg-primary px-8 text-base font-semibold text-white transition hover:brightness-110"
               >
-                Schedule a Call
+                Call to Order
               </Link>
             </motion.div>
           </div>
 
-          <div className="md:hidden ml-auto w-10" aria-hidden="true" />
+          <div className="lg:hidden ml-auto w-10" aria-hidden="true" />
+          <motion.button
+            onClick={() => setOpen(true)}
+            className="inline-flex h-11 w-11 items-center justify-center rounded-3xl transition hover:bg-black/5 lg:hidden"
+            aria-label="Open menu"
+            whileTap={{ scale: 0.95 }}
+          >
+            <BiMenu className="text-2xl text-primary" />
+          </motion.button>
         </nav>
       </motion.div>
 
+      {/* Mobile menu - slides down from top */}
       <AnimatePresence>
         {open && (
           <motion.div
-            className="fixed inset-0 z-70 md:hidden"
+            className="fixed inset-0 z-40 lg:hidden bg-black/50"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
           >
-            <motion.div
-              onClick={() => setOpen(false)}
-              className="absolute inset-0 bg-black/50"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-            />
+            <div className="absolute inset-0" onClick={() => setOpen(false)} />
 
-            <motion.aside
-              className="absolute left-0 top-0 h-full w-[85%] max-w-sm bg-white shadow-2xl"
-              initial={{ x: "-100%" }}
-              animate={{ x: 0 }}
-              exit={{ x: "-100%" }}
-              transition={{ duration: 0.28, ease: "easeOut" }}
+            <motion.div
+              className="absolute top-0 left-0 right-0 bg-white shadow-xl"
+              initial={{ y: "-100%", opacity: 0.8 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={{ y: "-100%", opacity: 0 }}
+              transition={{
+                duration: 0.35,
+                ease: [0.16, 1, 0.3, 1], // nice overshoot feel
+              }}
             >
-              <div className="flex items-center justify-between px-4 py-4 border-b border-secondary-dark/60">
+              {/* Header inside mobile menu */}
+              <div className="flex items-center justify-between px-5 py-4 border-b border-secondary-dark/60">
                 <div className="flex flex-col leading-tight">
-                  <span className="font-display font-bold text-tetiary">
-                    RedRose by Gladys
+                  <span className="font-display text-lg font-bold text-tetiary">
+                    RedRose by Olaw
                   </span>
-                  <span className="text-[11px] text-neutral-soft">
+                  <span className="text-xs text-neutral-soft">
                     Affiliate business owner of Affluence Global
                   </span>
                 </div>
 
                 <motion.button
                   onClick={() => setOpen(false)}
-                  className="w-10 h-10 rounded-xl hover:bg-black/5 transition flex items-center justify-center"
+                  className="flex h-11 w-11 items-center justify-center rounded-3xl transition hover:bg-black/5"
                   aria-label="Close menu"
                   whileTap={{ scale: 0.95 }}
                 >
@@ -133,7 +126,8 @@ const Header = () => {
                 </motion.button>
               </div>
 
-              <div className="px-4 py-6 flex flex-col gap-2">
+              {/* Nav items */}
+              <div className="px-5 py-6 flex flex-col gap-2">
                 {navitems.map((item) => {
                   const active = location.pathname === item.path;
                   return (
@@ -142,7 +136,7 @@ const Header = () => {
                       to={item.path}
                       onClick={() => setOpen(false)}
                       className={[
-                        "px-4 py-3 rounded-xl text-sm font-semibold transition",
+                        "rounded-3xl px-5 py-3.5 text-base font-medium transition",
                         active
                           ? "bg-black/5 text-tetiary"
                           : "text-neutral-dark hover:bg-black/5",
@@ -154,25 +148,25 @@ const Header = () => {
                 })}
               </div>
 
-              <div className="mt-auto p-4 border-t border-secondary-dark/60">
+              <div className="mt-auto p-5 border-t border-secondary-dark/60">
                 <Link
                   to="/contact"
                   onClick={() => setOpen(false)}
-                  className="block w-full text-center rounded-xl bg-primary px-4 py-3 text-sm font-semibold text-white shadow-sm hover:brightness-110 transition"
+                  className="block w-full rounded-3xl bg-primary px-5 py-3.5 text-center text-base font-semibold text-white shadow-sm transition hover:brightness-110"
                 >
-                  Schedule a Call
+                  Call to Order
                 </Link>
 
                 <a
-                  href="https://wa.me/2348140041861?text=Hi%20there,%20I'd%20like%20to%20learn%20more."
+                  href="https://wa.me/13175313547?text=Hi%20there,%20I'd%20like%20to%20learn%20more."
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="block mt-3 w-full text-center rounded-xl bg-black/5 hover:bg-black/10 px-4 py-3 text-xs font-semibold text-tetiary transition"
+                  className="mt-3 block w-full rounded-3xl bg-black/5 px-5 py-3.5 text-center text-sm font-semibold text-tetiary transition hover:bg-black/10"
                 >
                   Message Us
                 </a>
               </div>
-            </motion.aside>
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>

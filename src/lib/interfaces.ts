@@ -38,12 +38,12 @@ export interface WhyChooseCardProps {
 }
 
 export interface LegCardProps {
-  tag: string;
   title: string;
   description: string;
   cta: string;
   href?: string;
   onClick?: () => void;
+  icon?: React.ReactNode;
 }
 
 export type OrderStatus = "pending" | "verified";
@@ -63,7 +63,6 @@ export interface PendingOrder {
 
 export interface Review {
   name: string;
-  title: string;
   remark: string;
   rating?: number;
   source?: string;

@@ -1,44 +1,40 @@
 import type React from "react";
-import { HiSquares2X2 } from "react-icons/hi2";
+import { HiArrowTrendingUp } from "react-icons/hi2";
 import { Link } from "react-router-dom";
 import type { LegCardProps } from "../../lib/interfaces";
 
 const LegCard: React.FC<LegCardProps> = ({
-  tag,
   title,
   description,
   cta,
   href,
   onClick,
+  icon,
 }) => {
   return (
-    <div className="group h-full rounded-2xl border border-secondary-dark/70 bg-white p-4 sm:p-6 shadow-md shadow-black/5 transition hover:-translate-y-0.5">
-      <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3">
-        <div className="flex items-start gap-3 min-w-0">
-          <div className="shrink-0 h-10 w-10 rounded-xl bg-primary/10 text-primary flex items-center justify-center">
-            <HiSquares2X2 className="text-xl" />
-          </div>
-
-          <div className="min-w-0">
-            <h3 className="font-display text-base sm:text-lg font-extrabold text-tetiary leading-tight">
-              {title}
-            </h3>
-            <p className="mt-1 text-xs sm:text-sm text-neutral-soft leading-relaxed">
-              {description}
-            </p>
-          </div>
+    <div className="group h-full rounded-4xl border border-secondary-dark/70 bg-white p-5 shadow-[0_16px_34px_-28px_rgba(15,14,20,0.16)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_24px_44px_-30px_rgba(15,14,20,0.18)] sm:p-6">
+      <div className="flex items-start justify-between gap-4">
+        <div className="min-w-0">
+          <h3 className="mt-3 font-display text-2xl font-bold leading-tight text-neutral-dark">
+            {title}
+          </h3>
         </div>
 
-        <span className="self-start sm:self-auto shrink-0 inline-flex items-center rounded-full border border-secondary-dark/70 bg-white px-3 py-1 text-[10px] font-bold tracking-widest uppercase text-neutral-soft">
-          {tag}
-        </span>
+        <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-primary/15 bg-primary/5 text-primary">
+          {icon ? icon : <HiArrowTrendingUp className="text-xl" />}
+        </div>
       </div>
-      <div className="mt-4 sm:mt-5">
+
+      <div className="mt-5">
+        <p className="text-sm leading-7 text-neutral-soft">{description}</p>
+      </div>
+
+      <div className="mt-6">
         {href ? (
           <Link
             to={href}
             target="_blank"
-            className="inline-flex w-full items-center justify-center rounded-xl border border-primary bg-white px-4 py-3 text-sm font-bold text-primary transition hover:bg-primary hover:text-white"
+            className=" py-2 items-center justify-center rounded-[1.75rem] bg-primary px-8 text-base font-semibold text-white transition hover:brightness-110 inline-flex w-full"
           >
             {cta}
           </Link>
@@ -46,7 +42,7 @@ const LegCard: React.FC<LegCardProps> = ({
           <button
             type="button"
             onClick={onClick}
-            className="inline-flex w-full items-center justify-center rounded-xl border border-primary bg-white px-4 py-3 text-sm font-bold text-primary transition hover:bg-primary hover:text-white"
+            className=" py-2 items-center justify-center rounded-[1.75rem] bg-primary px-8 text-base font-semibold text-white transition hover:brightness-110 inline-flex w-full"
           >
             {cta}
           </button>

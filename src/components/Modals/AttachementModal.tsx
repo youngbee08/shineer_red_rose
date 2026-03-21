@@ -46,11 +46,9 @@ const AttachmentModal: React.FC<AttachmentModalProps> = ({
         className="relative z-10 w-[92%] max-w-xl rounded-2xl bg-white shadow-2xl max-h-[85vh] overflow-y-auto styled-scrollbar"
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Header */}
         <div className="flex items-center justify-between border-b border-black/10 px-5 py-4">
           <h3 className="text-base font-semibold text-black">{title}</h3>
 
-          {/* tighter spacing */}
           <div className="flex items-center gap-2">
             {allowDownload && image && (
               <a
@@ -77,7 +75,6 @@ const AttachmentModal: React.FC<AttachmentModalProps> = ({
           </div>
         </div>
 
-        {/* Content */}
         <div className="p-5">
           {image ? (
             <div className="w-full overflow-hidden rounded-xl border border-black/10 bg-black/5 p-3">

@@ -1,187 +1,169 @@
 import React from "react";
-import assets from "../assets/assets";
 import BenefitCard from "../components/common/BenefitCard";
 import type { BenefitCardProps } from "../lib/interfaces";
-import { PiFlowerTulip } from "react-icons/pi";
-import { MdCleanHands } from "react-icons/md";
-import { GiRopeCoil } from "react-icons/gi";
+import { GiFactory, GiAlarmClock } from "react-icons/gi";
 import FaqCard from "../components/common/FaqCard";
+import { BiLeaf } from "react-icons/bi";
 
 const About: React.FC = () => {
   const values: BenefitCardProps[] = [
     {
-      name: "Purity",
-      icon: <PiFlowerTulip />,
+      name: "Clean Ingredient Focus",
+      icon: <BiLeaf className="text-base" />,
       detail:
-        "Made with carefully selected red botanicals and superfruits, free from unnecessary additives.",
+        "Built around carefully selected red botanicals and superfruits without unnecessary extras.",
     },
     {
-      name: "Quality",
-      icon: <MdCleanHands />,
+      name: "Reliable Production Standards",
+      icon: <GiFactory className="text-base" />,
       detail:
-        "Formulated with high-grade ingredients and produced under strict quality standards for consistent results.",
+        "Prepared with quality-minded processes designed to support consistency and trust in every order.",
     },
     {
-      name: "Consistency",
-      icon: <GiRopeCoil />,
+      name: "Made for Everyday Use",
+      icon: <GiAlarmClock className="text-base" />,
       detail:
-        "Designed for daily use to support long-term wellness through regular, mindful intake.",
+        "Created to fit naturally into a regular routine so wellness support feels practical and sustainable.",
     },
   ];
 
   const faqs = [
     {
-      question: "Is this product safe to use?",
+      question: "Can this fit into a daily wellness routine?",
       answer:
-        "Yes. Our products are made with carefully sourced ingredients and follow recommended safety standards.",
+        "Yes. It is designed to be part of a consistent wellness lifestyle when used as directed.",
     },
     {
-      question: "Do I need experience to become an affiliate?",
+      question: "Can beginners join the affiliate opportunity?",
       answer:
-        "No experience is required. You’ll receive guidance and support to help you get started.",
+        "Yes. You do not need prior experience to begin, and the process is structured to be approachable.",
     },
     {
-      question: "How soon can I see results?",
+      question: "How long should I stay consistent with use?",
       answer:
-        "Results vary depending on consistency and individual response, but many users notice changes over time.",
+        "Consistency matters most. Individual experiences vary, but ongoing routine use is encouraged.",
     },
     {
-      question: "How do I get started?",
+      question: "What is the easiest way to get started?",
       answer:
-        "Simply reach out to us or follow the sign-up process. We’ll guide you step by step.",
+        "Start by choosing your preferred path, product purchase or affiliate signup, and follow the guided steps.",
     },
   ];
+
+  const formulaSupport = [
+    {
+      title: "Cellular Support",
+      desc: "Helps support the body against daily oxidative stress and internal imbalance.",
+    },
+    {
+      title: "Antioxidant Defense",
+      desc: "Supports the body's natural response to free radicals and wellness stressors.",
+    },
+    {
+      title: "Glutathione Support",
+      desc: "Encourages support for one of the body's key antioxidant systems.",
+    },
+    {
+      title: "Everyday Vitality",
+      desc: "Designed to fit into a routine that supports steady wellness and daily energy.",
+    },
+  ];
+
   return (
     <div className="flex flex-col gap-10 lg:gap-14">
-      <section className="flex lg:flex-row flex-col-reverse gap-6 lg:gap-12 items-start">
-        <div className="w-full lg:w-1/2 h-full bg-neutral-soft/30 backdrop-blur-2xl rounded-2xl">
-          <img
-            src={assets.about}
-            alt="about-image"
-            className="w-full h-full object-cover rounded-2xl"
-          />
-        </div>
-        <div className="flex flex-col gap-2 lg:gap-5 w-full lg:w-1/2">
-          <h1 className="text-neutral-dark text-2xl lg:text-5xl font-semibold">
-            Crafted for Daily Wellness{" "}
+      <section className="bg-primary flex items-center justify-center py-7 text-center lg:py-17">
+        <div className="flex max-w-3xl flex-col gap-2 px-4 lg:gap-3">
+          <h1 className="font-display text-xl font-extrabold text-white sm:text-2xl lg:text-3xl">
+            About Double RedRose
           </h1>
 
-          <div className="w-full">
-            <div className="flex flex-col gap-3">
-              <p className="text-neutral-soft font-medium text-xs lg:text-sm">
-                The human body functions as a connected system built from cells,
-                tissues, organs, and body systems, with healthy cells forming
-                the foundation of overall wellbeing. Each day, these cells are
-                exposed to metabolic and environmental stress that can affect
-                balance over time.
-              </p>
-
-              <p className="text-neutral-soft font-medium text-xs lg:text-sm">
-                Antioxidants help protect cells by neutralizing free radicals
-                and reducing oxidative stress. A key antioxidant produced by the
-                body is{" "}
-                <span className="font-semibold text-primary">glutathione</span>,
-                which supports immune balance, detox processes, and cellular
-                stability.{" "}
-                <span className="font-semibold text-primary">
-                  N-Acetyl Cysteine (NAC)
-                </span>{" "}
-                supports glutathione production by supplying cysteine, helping
-                maintain strong antioxidant defenses.
-              </p>
-
-              <p className="text-neutral-soft font-medium text-xs lg:text-sm">
-                Double Red Rose is formulated to support antioxidant activity at
-                the cellular level, helping protect cells from oxidative stress,
-                support glutathione-related functions, and promote healthier
-                tissues, organs, and overall wellness.
-              </p>
-            </div>
-          </div>
+          <p className="text-xs leading-7 text-white/90 sm:text-sm lg:text-base lg:leading-8">
+            Double Red Rose is a wellness supplement designed to support the
+            body at the cellular level, helping reduce oxidative stress and
+            promote glutathione production for stronger immunity, better
+            detoxification, and overall wellness.
+          </p>
         </div>
       </section>
-      <section className="flex flex-col gap-6 lg:gap-12">
-        <div className="w-full flex items-center gap-2">
-          <div className="w-1 h-6 bg-primary rounded-t-xl rounded-b-xl"></div>
-          <h2 className="text-xl lg:text-2xl text-neutral-dark font-semibold">
-            The Product
-          </h2>
-        </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-          <div className="relative w-full flex justify-center">
-            <div className="absolute inset-0 bg-primary/10 blur-3xl opacity-40 rounded-full" />
-
-            <div className="relative w-full lg:max-w-md rounded-2xl border border-secondary-dark/70 bg-white shadow-xl shadow-black/10">
-              <img
-                src={assets.showcase}
-                alt="Double Red Rose Product"
-                className="w-full object-contain rounded-2xl"
-              />
+      <div className="app-container flex flex-col gap-10 lg:gap-14">
+        <section className="flex flex-col gap-8 lg:gap-14">
+          <div className="mx-auto flex max-w-3xl flex-col items-center gap-3 text-center">
+            <div className="flex w-full items-center justify-center gap-2">
+              <h2 className="text-2xl font-semibold text-neutral-dark lg:text-4xl">
+                What the Formula Is Designed to Support
+              </h2>
             </div>
-          </div>
-
-          <div className="flex flex-col gap-4">
-            <h3 className="text-2xl lg:text-3xl font-semibold text-neutral-dark">
-              Double Red Rose
-            </h3>
-
-            <p className="text-xs lg:text-sm text-neutral-soft leading-relaxed">
-              A carefully formulated blend of powerful red botanicals and
-              antioxidant-rich extracts designed to support cellular protection,
-              immune balance, and overall vitality.
+            <p className="text-center text-sm leading-7 text-neutral-soft">
+              Designed to support your body from within through targeted
+              cellular wellness.
             </p>
+          </div>
 
-            <ul className="flex flex-col gap-2 text-xs lg:text-sm text-neutral-soft">
-              <li>• Supports antioxidant defense</li>
-              <li>• Promotes cellular protection</li>
-              <li>• Supports glutathione activity</li>
-              <li>• Designed for consistent daily wellness</li>
-            </ul>
-
-            <div>
-              <span className="inline-flex items-center rounded-full bg-primary px-5 py-2 text-sm font-semibold text-white shadow-md">
-                Daily Wellness Formula
-              </span>
+          <div className="flex flex-col lg:items-center justify-between gap-10 lg:flex-row">
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 ">
+              {formulaSupport.map((item, i) => (
+                <div
+                  key={i}
+                  className="rounded-2xl border border-secondary-dark/60 p-4 transition hover:border-primary"
+                >
+                  <h4 className="text-sm font-semibold text-neutral-dark lg:text-base">
+                    {item.title}
+                  </h4>
+                  <p className="mt-1 text-xs text-neutral-soft lg:text-sm">
+                    {item.desc}
+                  </p>
+                </div>
+              ))}
             </div>
           </div>
-        </div>
-      </section>
-      <section className="flex flex-col gap-6 lg:gap-12">
-        <div className="w-full flex items-center gap-2">
-          <div className="w-1 h-6 bg-primary rounded-t-xl rounded-b-xl"></div>
-          <h2 className="text-xl lg:text-2xl  text-neutral-dark font-semibold">
-            Core Values
-          </h2>
-        </div>
-        <div className="flex lg:items-center gap-5 lg:flex-row flex-col">
-          {values.map((value, index) => (
-            <BenefitCard
-              name={value.name}
-              icon={value.icon}
-              detail={value.detail}
-              key={index}
-            />
-          ))}
-        </div>
-      </section>
-      <section className="flex flex-col gap-6 lg:gap-12">
-        <div className="w-full flex items-center gap-2">
-          <div className="w-1 h-6 bg-primary rounded-t-xl rounded-b-xl"></div>
-          <h2 className="text-xl lg:text-2xl  text-neutral-dark font-semibold">
-            FAQs
-          </h2>
-        </div>
-        <div className="w-full mx-auto flex flex-col gap-3">
-          {faqs.map((faq) => (
-            <FaqCard
-              key={faq.question}
-              question={faq.question}
-              answer={faq.answer}
-            />
-          ))}
-        </div>
-      </section>
+        </section>
+
+        <section className="flex flex-col gap-6 lg:gap-12">
+          <div className="mx-auto max-w-xl text-center">
+            <h2 className="text-2xl font-bold text-neutral-dark lg:text-4xl">
+              Why the Product Experience Feels Different
+            </h2>
+            <p className="mt-2 text-sm text-neutral-soft lg:text-base">
+              The principles that guide everything we do and every product we
+              create.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 gap-4 lg:grid-cols-2 lg:gap-4">
+            {values.map((value, index) => (
+              <BenefitCard
+                name={value.name}
+                icon={value.icon}
+                detail={value.detail}
+                key={index}
+              />
+            ))}
+          </div>
+        </section>
+
+        <section className="flex flex-col gap-6 lg:gap-12">
+          <div className="mx-auto flex max-w-3xl flex-col items-center gap-3 text-center">
+            <div className="w-full flex items-center justify-center gap-2">
+              <h2 className="text-2xl font-semibold text-neutral-dark lg:text-4xl">
+                Questions People Ask
+              </h2>
+            </div>
+            <p className="text-center text-sm leading-7 text-neutral-soft">
+              Get quick answers to the most common questions about product use,
+              consistency, and getting started.
+            </p>
+          </div>
+          <div className="w-full mx-auto flex flex-col gap-3">
+            {faqs.map((faq) => (
+              <FaqCard
+                key={faq.question}
+                question={faq.question}
+                answer={faq.answer}
+              />
+            ))}
+          </div>
+        </section>
+      </div>
     </div>
   );
 };

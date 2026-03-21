@@ -13,12 +13,12 @@ const MainLayout: React.FC<mainLayoutProps> = ({ children }) => {
   }, [location]);
 
   return (
-    <div className="min-h-screen bg-secondary/30 text-tetiary">
+    <div className="min-h-screen overflow-x-hidden bg-secondary/30 text-tetiary">
       <Header />
       <AnimatePresence mode="wait">
         <motion.main
           key={location.pathname}
-          className="app-container pt-7 lg:pt-14"
+          className="w-full"
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: 8 }}

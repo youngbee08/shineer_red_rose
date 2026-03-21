@@ -3,14 +3,45 @@ import type { BenefitCardProps } from "../../lib/interfaces";
 
 const BenefitCard: React.FC<BenefitCardProps> = ({ name, icon, detail }) => {
   return (
-    <div className="group flex flex-col gap-2 rounded-xl border border-neutral-soft/10 overflow-hidden bg-white shadow-lg backdrop-blur-2xl p-3 lg:p-7 transition-transform duration-300 hover:-translate-y-1">
-      <div className="bg-primary/10 text-primary rounded-xl p-3 w-10">
-        {icon}
+    <div
+      className={`
+        group relative overflow-hidden rounded-xl border border-gray-200/80 
+        bg-white p-6 shadow-sm transition-all duration-300 
+        hover:shadow-md hover:border-gray-300/90 
+        focus-within:shadow-md focus-within:border-gray-300/90
+        md:p-7
+      `}
+    >
+      <div className="mb-5 md:mb-0 flex items-start gap-5 lg:flex-row flex-col">
+        <div
+          className={`
+            inline-flex h-14 w-14 shrink-0 items-center justify-center 
+            rounded-lg bg-primary/10 text-primary transition-colors 
+            group-hover:bg-primary/15
+          `}
+        >
+          <div className="text-2xl md:text-3xl">{icon}</div>
+        </div>
+
+        <div className="flex-1">
+          <h3
+            className={`
+              font-display text-lg font-semibold leading-tight text-gray-900 
+              md:text-xl
+            `}
+          >
+            {name}
+          </h3>
+          <p
+            className={`
+              mt-2.5 text-sm leading-relaxed text-gray-600 
+              md:mt-3 md:text-base
+            `}
+          >
+            {detail}
+          </p>
+        </div>
       </div>
-      <h4 className="text-sm lg:text-base font-semibold">{name}</h4>
-      <p className="text-xs lg:text-sm font-medium text-neutral-soft">
-        {detail}
-      </p>
     </div>
   );
 };

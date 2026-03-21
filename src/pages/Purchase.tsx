@@ -4,14 +4,15 @@ import { HiOutlineClipboardCopy } from "react-icons/hi";
 import product from "../lib/productDetails";
 import type { PendingOrder } from "../lib/interfaces";
 import { useNavigate } from "react-router-dom";
+import { convertNairaToDollar } from "../utilities/formatterUtility";
 
-const WHATSAPP_NUMBER = "2348140041861";
+const WHATSAPP_NUMBER = "13175313547";
 
 const BANK_DETAILS = {
-  bankName: "UBA",
-  accountName: "AFFLUENCE GLOBAL NUTRITION AND WELLNESS LTD",
-  accountNumber: "1026783434",
-  branch: "POWA PLAZA, ABUJA",
+  bankName: "ZELLE",
+  accountName: "AFFLUENCE GLOBAL USA",
+  accountNumber: "affluenceglobalusa@gmail.com",
+  branch: "114 Kirk Rd Wilmington Delaware 19807",
 };
 
 const naira = (n: number) =>
@@ -37,6 +38,7 @@ const PurchasePage: React.FC = () => {
   const [address, setAddress] = useState("");
   const [receiptFile, setReceiptFile] = useState<File | null>(null);
   const [orderId, setOrderId] = useState<string>("");
+  const [showUSD, setShowUSD] = useState(true);
 
   const amount = useMemo(() => unitPrice * qty, [unitPrice, qty]);
 
@@ -71,12 +73,12 @@ const PurchasePage: React.FC = () => {
       `Order ID: ${data.orderId}\n` +
       `Product: ${data.productName}\n` +
       `Quantity: ${data.qty}\n` +
-      `Amount: ${naira(data.amount)}\n` +
+      `Amount: ${showUSD ? `$${convertNairaToDollar(data.amount)}` : naira(data.amount)}\n` +
       `Name: ${data.fullName}\n` +
       `Address: ${data.address}\n` +
       `Date: ${dateText}\n\n` +
       `Receipt: ${data.receiptFileName || "Attached"}\n\n` +
-      `Hello, I’ve made payment. Please verify my receipt.\n` +
+      `Hello, I've made payment. Please verify my receipt.\n` +
       `Note: I will attach the receipt image/PDF in this chat.`;
 
     return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`;
@@ -107,7 +109,7 @@ const PurchasePage: React.FC = () => {
   const handleCopyAccountNumber = async () => {
     try {
       await navigator.clipboard.writeText(BANK_DETAILS.accountNumber);
-      toast.success("Account number copied");
+      toast.success("Copied");
     } catch {
       toast.error("Copy failed. Please copy manually.");
     }
@@ -126,19 +128,63 @@ const PurchasePage: React.FC = () => {
   };
 
   return (
-    <section className="w-full">
-      <div className="mx-auto w-full max-w-xl">
-        <div className="rounded-2xl border border-secondary-dark/70 bg-white p-5 sm:p-6 shadow-md shadow-black/5">
-          <h1 className="font-display text-xl sm:text-2xl font-extrabold text-tetiary text-center">
-            Order & Payment
-          </h1>
-
-          <div className="mt-5 rounded-2xl border border-secondary-dark/70 bg-secondary/30 p-4">
-            <p className="text-sm font-bold text-tetiary">{productName}</p>
-            <p className="mt-1 text-xs text-neutral-soft">
-              Unit Price:{" "}
-              <span className="font-semibold">{naira(unitPrice)}</span>
+    <section className="app-container w-full">
+      <div className="mx-auto w-full max-w-xl mt-13">
+        <div className="p-0">
+          <div className="mx-auto flex max-w-3xl flex-col items-center gap-3 text-center">
+            <h1 className="font-display text-xl font-extrabold text-tetiary sm:text-2xl">
+              Complete Your Order
+            </h1>
+            <p className="text-sm leading-7 text-neutral-soft">
+              Follow the steps below: confirm your package, make payment, then
+              send your receipt on WhatsApp for verification.
             </p>
+          </div>
+
+          <div className="mt-5 rounded-2xl border border-secondary-dark/70 bg-white p-4">
+            <div className="mb-3 flex items-center justify-between gap-3">
+              <p className="text-sm font-bold text-tetiary">{productName}</p>
+              <div className="inline-flex rounded-full border border-secondary-dark/70 bg-secondary/20 p-1">
+                <button
+                  type="button"
+                  onClick={() => setShowUSD(true)}
+                  className={[
+                    "rounded-full px-3 py-1 text-[11px] font-bold uppercase transition",
+                    showUSD ? "bg-primary text-white" : "text-neutral-soft",
+                  ].join(" ")}
+                >
+                  USD
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setShowUSD(false)}
+                  className={[
+                    "rounded-full px-3 py-1 text-[11px] font-bold uppercase transition",
+                    !showUSD ? "bg-primary text-white" : "text-neutral-soft",
+                  ].join(" ")}
+                >
+                  NGN
+                </button>
+              </div>
+            </div>
+            <div className="flex flex-col gap-1">
+              <p className="text-xs text-neutral-soft">
+                Unit Price:{" "}
+                <span className="font-semibold text-tetiary">
+                  {showUSD
+                    ? `$${convertNairaToDollar(unitPrice)}`
+                    : naira(unitPrice)}
+                </span>
+              </p>
+              <p className="text-xs text-neutral-soft">
+                Alternate Price:{" "}
+                <span className="font-semibold text-tetiary">
+                  {showUSD
+                    ? naira(unitPrice)
+                    : `$${convertNairaToDollar(unitPrice)}`}
+                </span>
+              </p>
+            </div>
           </div>
 
           <div className="mt-6">
@@ -209,9 +255,6 @@ const PurchasePage: React.FC = () => {
               <p className="text-sm font-bold text-tetiary">
                 Bank Transfer Details
               </p>
-              <span className="text-[10px] font-bold tracking-widest uppercase text-primary bg-white border border-primary/30 px-3 py-1 rounded-full">
-                Verified
-              </span>
             </div>
 
             <div className="mt-4 rounded-xl border border-primary/40 bg-white p-4">
@@ -229,7 +272,7 @@ const PurchasePage: React.FC = () => {
                   <p className="text-[11px] font-bold tracking-widest uppercase text-neutral-soft">
                     Branch
                   </p>
-                  <p className="mt-1 text-sm font-bold text-tetiary">
+                  <p className="mt-1 text-sm font-bold text-tetiary uppercase">
                     {BANK_DETAILS.branch}
                   </p>
                 </div>
@@ -247,7 +290,7 @@ const PurchasePage: React.FC = () => {
               <div className="mt-4 flex items-end justify-between gap-3 rounded-xl border border-secondary-dark/70 bg-secondary/20 p-4">
                 <div>
                   <p className="text-[11px] font-bold tracking-widest uppercase text-neutral-soft">
-                    Account number
+                    Zelle Email
                   </p>
                   <p className="mt-1 text-lg font-extrabold text-tetiary tracking-wide">
                     {BANK_DETAILS.accountNumber}
@@ -270,11 +313,16 @@ const PurchasePage: React.FC = () => {
             </div>
           </div>
           <div className="mt-6 flex items-center justify-between">
-            <p className="text-sm font-bold text-neutral-soft">
-              Total Amount to Pay
-            </p>
+            <div>
+              <p className="text-sm font-bold text-neutral-soft">
+                Total Amount to Pay
+              </p>
+              <p className="mt-1 text-xs text-neutral-soft">
+                {showUSD ? naira(amount) : `$${convertNairaToDollar(amount)}`}
+              </p>
+            </div>
             <p className="font-display text-xl font-extrabold text-primary">
-              {naira(amount)}
+              {showUSD ? `$${convertNairaToDollar(amount)}` : naira(amount)}
             </p>
           </div>
           <div className="mt-5">
@@ -297,14 +345,14 @@ const PurchasePage: React.FC = () => {
               {receiptFile ? "Change Receipt" : "Upload Receipt"}
             </button>
             <p className="mt-2 text-xs text-neutral-soft">
-              You’ll upload/select the receipt here, then you’ll attach it in
+              You'll upload/select the receipt here, then you'll attach it in
               WhatsApp.
             </p>
           </div>
           <button
             type="button"
             onClick={handleSubmit}
-            className="mt-5 w-full rounded-xl bg-primary px-5 py-3 text-sm font-bold text-white shadow-md shadow-black/10 hover:brightness-110 transition"
+            className="mt-5 w-full rounded-4xl bg-primary px-5 py-3 text-sm font-bold text-white shadow-md shadow-black/10 hover:brightness-110 transition"
           >
             Submit & Continue on WhatsApp
           </button>

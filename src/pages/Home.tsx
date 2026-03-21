@@ -1,17 +1,19 @@
 import { motion, AnimatePresence } from "framer-motion";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import assets from "../assets/assets";
+import { FaArrowRight } from "react-icons/fa";
+import { FaCartShopping } from "react-icons/fa6";
 import {
-  FaArrowRight,
-  FaLeaf,
-  FaShieldAlt,
-  FaStar,
-  FaStarHalf,
-} from "react-icons/fa";
-import { FaCartShopping, FaUserDoctor } from "react-icons/fa6";
-import product from "../lib/productDetails";
+  GiChemicalDrop,
+  GiHealthPotion,
+  GiPadlock,
+  GiLeafSwirl,
+  GiLightningShield,
+  GiCheckMark,
+  GiCrystalBars,
+} from "react-icons/gi";
+
 import { useNavigate } from "react-router-dom";
-import { convertNairaToDollar } from "../utilities/formatterUtility";
 import type {
   BenefitCardProps,
   HowItWorksCardProps,
@@ -19,9 +21,6 @@ import type {
   IngredientCardProps,
   Review,
 } from "../lib/interfaces";
-import { GiCottonFlower } from "react-icons/gi";
-import { BiSolidZap } from "react-icons/bi";
-import { SiHoneygain } from "react-icons/si";
 import BenefitCard from "../components/common/BenefitCard";
 import HowItWorksCard from "../components/common/HowItWorkCard";
 import IngredientCard from "../components/common/IngredientsCard";
@@ -33,64 +32,60 @@ import { HiChevronLeft, HiChevronRight } from "react-icons/hi";
 import AttachmentModal from "../components/Modals/AttachementModal";
 
 const Home: React.FC = () => {
-  const savedCount = sessionStorage.getItem("productCount");
-  const [productCount, setProductCount] = useState(
-    savedCount ? +savedCount : 1,
-  );
   const [reviewAttachement, setReviewAttachement] = useState("");
-  const navigate = useNavigate();
-  const [showUSD, setShowUSD] = useState(false);
-
-  const manageProductQuantity = (type = "add") => {
-    if (type === "add") {
-      setProductCount(productCount + 1);
-      return;
-    }
-    if (productCount === 1) {
-      return;
-    }
-    setProductCount(productCount - 1);
+  const [visibleIng, setVisibleIng] = useState(3);
+  const handleViewMore = () => {
+    setVisibleIng((prev) => prev + 3);
   };
+  const isMobile = window.innerWidth < 1024;
+
+  const navigate = useNavigate();
 
   const benefits: BenefitCardProps[] = [
     {
       name: "Pure, Plant-Based Formula",
-      icon: <GiCottonFlower />,
+      icon: <GiLeafSwirl className="text-base" />,
       detail:
-        "Made with carefully selected red botanicals and superfruits, no artificial colors, no fillers, and no added sugar. Clean nutrition your body can recognize and use daily.",
+        "Made with carefully selected red botanicals and superfruits for clean daily wellness support.",
     },
     {
       name: "Daily Vitality Boost",
-      icon: <BiSolidZap />,
+      icon: <GiLightningShield className="text-base" />,
       detail:
-        "Designed to support natural energy, mental clarity, and immune strength when taken consistently. Feel refreshed, focused, and ready to take on your day.",
+        "Supports natural energy, mental clarity, and immune strength with consistent use.",
     },
     {
       name: "Quality You Can Trust",
-      icon: <SiHoneygain />,
+      icon: <GiCheckMark className="text-base" />,
       detail:
-        "Formulated with evidence-based nutraceuticals and produced in GMP-certified, FDA-registered facilities using independently tested ingredients.",
+        "Produced with tested ingredients in GMP-certified, FDA-registered facilities.",
+    },
+    {
+      name: "Antioxidant Wellness Support",
+      icon: <GiCrystalBars className="text-base" />,
+      detail:
+        "Helps support daily wellness with antioxidant-focused ingredients for balanced living.",
     },
   ];
 
   const howItWorks: HowItWorksCardProps[] = [
     {
-      name: "Place Your Order",
+      name: "Choose Your Package",
       id: "1",
       detail:
-        "Choose your preferred package and complete a secure checkout to begin your journey as a member.",
+        "Select the package that fits your goals and complete your order through the guided checkout process.",
     },
     {
-      name: "Receive & Experience",
+      name: "Use It Consistently",
       id: "2",
       detail:
-        "Enjoy fast delivery and start using Double Red Rose daily to support your wellness and track your results.",
+        "Start your daily routine with confidence and stay consistent as you monitor how your body responds over time.",
     },
     {
-      name: "Share & Grow",
+      name: "Refer and Grow",
       id: "3",
       detail:
-        "Recommend Double Red Rose to others, share your referral link confidently, and earn consistent rewards as your network expands and your impact grows.",
+        "Share your experience, recommend the product to others, and grow your network through a trusted referral pathway.",
     },
   ];
 
@@ -98,65 +93,70 @@ const Home: React.FC = () => {
     {
       title: "Red Rose Extract",
       description:
-        "Rich in phytonutrients and antioxidants that support cellular health and skin vitality.",
+        "Rich in antioxidants with anti-inflammatory properties to soothe skin, reduce redness, and promote vitality and cellular wellness.",
       image: assets.rose,
     },
     {
-      title: "Goji Berry",
-      description:
-        "A powerful antioxidant superfruit traditionally used to support immunity and energy.",
-      image: assets.goji,
-    },
-    {
-      title: "N-Acetyl Cysteine (NAC)",
-      description:
-        "Helps support glutathione production, promoting antioxidant defense and cellular protection.",
-      image: assets.nac,
-    },
-
-    {
       title: "Pomegranate",
       description:
-        "Supports healthy aging, skin health, and antioxidant defense.",
+        "Packed with polyphenols and antioxidants that support healthy aging, skin protection, and overall cellular defense.",
       image: assets.pomegranate,
     },
     {
       title: "Red Grapes",
       description:
-        "Natural source of resveratrol and polyphenols for cellular protection.",
+        "Source of resveratrol and polyphenols that help protect cells, combat oxidative stress, and support long-term wellness.",
       image: assets.grape,
+    },
+
+    {
+      title: "Goji Berry",
+      description:
+        "Loaded with vitamins and antioxidants to support immune function, boost natural energy, and enhance resilience.",
+      image: assets.goji,
     },
     {
       title: "Acerola Cherry",
-      description: "Naturally high in vitamin C to support immune function.",
+      description:
+        "A potent natural source of vitamin C that bolsters immune health, fights oxidative stress, and promotes daily vitality.",
       image: assets.acerola,
     },
     {
+      title: "Red Ginseng Extract",
+      description:
+        "Supports mental focus, stamina, energy levels, and clearer cognitive performance throughout the day.",
+      image: assets.ginseng,
+    },
+
+    {
+      title: "N-Acetyl Cysteine (NAC)",
+      description:
+        "Boosts glutathione production — the body's master antioxidant — for enhanced cellular protection and defense against oxidative stress.",
+      image: assets.nac,
+    },
+
+    {
       title: "Peach Extract",
       description:
-        "Contributes antioxidants and supports hydration and digestion.",
+        "Provides gentle antioxidant support while aiding hydration, digestive comfort, and overall balance.",
       image: assets.peach,
     },
     {
       title: "Chinese Date (Jujube)",
       description:
-        "Traditionally used to support energy, mood balance, and overall vitality.",
+        "Traditionally used to promote energy equilibrium, calmness, relaxation, and holistic wellbeing.",
       image: assets.jujube,
-    },
-    {
-      title: "Red Ginseng Extract",
-      description: "Supports mental clarity, focus, and physical energy.",
-      image: assets.ginseng,
     },
     {
       title: "Locust Honey",
       description:
-        "Natural sweetener that supports energy and nutrient absorption.",
+        "Natural sweetener that supports nutrient absorption, gentle energy release, and overall vitality.",
       image: assets.honey,
     },
     {
       title: "Lemon Extract",
-      description: "Supports hydration, digestion, and freshness of taste.",
+      description:
+        "Delivers refreshing antioxidant support to aid hydration, digestive freshness, and a clean internal feel.",
       image: assets.lemon,
     },
   ];
@@ -164,101 +164,97 @@ const Home: React.FC = () => {
   const howToUse: HowToUseCardProps[] = [
     {
       step: 1,
-      title: "Take Daily as Recommended",
+      title: "Use One Sachet Daily",
       description:
-        "Consume one sachet each day as directed to support consistent nutrient intake and overall wellness.",
+        "Take one sachet each day as directed to build a steady and reliable wellness routine.",
     },
     {
       step: 2,
-      title: "Stay Consistent",
+      title: "Make It a Routine",
       description:
-        "Daily use allows your body to absorb and respond to key nutrients effectively over time.",
+        "Consistent daily use helps your body respond better to the product's key ingredients over time.",
     },
     {
       step: 3,
-      title: "Listen to Your Body",
+      title: "Track Your Progress",
       description:
-        "Observe how you feel as you continue use and make adjustments with professional guidance if needed.",
+        "Pay attention to how you feel and stay guided by your personal wellness goals as you continue.",
     },
   ];
 
   const whyChooseUs = [
     {
-      icon: <FaLeaf className="text-base" />,
-      title: "Premium Quality Ingredients",
+      icon: <GiChemicalDrop className="text-base" />,
+      title: "Purposeful Ingredient Selection",
       description:
-        "Our products are made with carefully selected ingredients to ensure safety, purity, and effectiveness.",
+        "Each formula is built around thoughtfully selected ingredients chosen for daily wellness support.",
     },
     {
-      icon: <FaUserDoctor className="text-base" />,
-      title: "Strong Partner Support",
+      icon: <GiHealthPotion className="text-base" />,
+      title: "Guided Partner Experience",
       description:
-        "As an affiliate business owner, you get access to guidance, community, and ongoing support.",
+        "You are not left alone; guidance, structure, and support are available as you grow.",
     },
     {
-      icon: <FaShieldAlt className="text-base" />,
-      title: "Trusted Wellness Brand",
+      icon: <GiPadlock className="text-base" />,
+      title: "Built on Trust",
       description:
-        "Used by partners across multiple regions, Double Red Rose is built on trust and transparency.",
+        "The brand is shared with confidence because it is presented with clarity, consistency, and care.",
     },
   ];
 
   const faqs = [
     {
-      question: "Is this product safe to use?",
+      question: "Can this fit into a daily wellness routine?",
       answer:
-        "Yes. Our products are made with carefully sourced ingredients and follow recommended safety standards.",
+        "Yes. It is designed to be part of a consistent wellness lifestyle when used as directed.",
     },
     {
-      question: "Do I need experience to become an affiliate?",
+      question: "Can beginners join the affiliate opportunity?",
       answer:
-        "No experience is required. You’ll receive guidance and support to help you get started.",
+        "Yes. You do not need prior experience to begin, and the process is structured to be approachable.",
     },
     {
-      question: "How soon can I see results?",
+      question: "How long should I stay consistent with use?",
       answer:
-        "Results vary depending on consistency and individual response, but many users notice changes over time.",
+        "Consistency matters most. Individual experiences vary, but ongoing routine use is encouraged.",
     },
     {
-      question: "How do I get started?",
+      question: "What is the easiest way to get started?",
       answer:
-        "Simply reach out to us or follow the sign-up process. We’ll guide you step by step.",
+        "Start by choosing your preferred path, product purchase or affiliate signup, and follow the guided steps.",
     },
   ];
 
   const reviews: Review[] = [
     {
       name: "Bekezela PRN",
-      title: "More strength & better rest",
       remark:
-        "I’m grateful. After staying consistent, my mum felt noticeably stronger and more comfortable, and she slept well. We’re really happy with the experience.",
+        "After staying consistent, my mum felt more comfortable, stronger, and able to rest better. We were truly encouraged by the change.",
       rating: 4,
       source: "WhatsApp",
       attachment: assets.att1,
     },
     {
       name: "Samuel Osei",
-      title: "Quick wellness support",
       remark:
-        "After a few sachets, my wife felt much better and more active. This product has been a great support in our home.",
+        "After a few sachets, my wife felt more active and noticeably better. It has become a valuable part of our home routine.",
       rating: 5,
       source: "WhatsApp",
       attachment: assets.att2,
     },
     {
       name: "Anima",
-      title: "Less tired after work",
       remark:
-        "I used it consistently for several days and I felt less tired and more balanced after work. I can see why people recommend it.",
+        "I stayed consistent for several days and felt less drained after work, with a more balanced feeling overall.",
       rating: 4,
       source: "WhatsApp",
       attachment: assets.att3,
     },
     {
       name: "Honorine Relax",
-      title: "Encouraging personal progress",
       remark:
-        "A client shared very encouraging progress after staying consistent with Double Red Rose as part of her wellness routine. We’re grateful for the positive feedback and experience.",
+        "A client shared encouraging progress after making Double Red Rose part of her routine, and the feedback was genuinely uplifting.",
       rating: 5,
       source: "WhatsApp",
       attachment: assets.att4,
@@ -284,289 +280,322 @@ const Home: React.FC = () => {
     setIndex((prev) => (prev - 1 + total) % total);
   };
 
-  useEffect(() => {
-    if (productCount > 1) {
-      sessionStorage.setItem("productCount", productCount.toString());
-    }
-  }, [productCount]);
+  const getInitials = (value: string) =>
+    value
+      .split(" ")
+      .filter(Boolean)
+      .slice(0, 2)
+      .map((part) => part[0]?.toUpperCase() ?? "")
+      .join("");
+
+  const displayCount = isMobile ? visibleIng : ingredients.length;
 
   return (
     <>
       <div className="flex flex-col gap-10 lg:gap-14">
-        <section className="flex lg:flex-row flex-col gap-6 lg:gap-12 items-start">
-          <div className="w-full lg:w-1/2 h-full bg-neutral-soft/30 backdrop-blur-2xl rounded-2xl relative">
-            <img
-              src={assets.mockup}
-              alt="mockup-image"
-              className="w-full h-full object-cover rounded-2xl"
-            />
-            <span className="absolute top-3 right-6 bg-primary text-white rounded-2xl px-3 py-1 text-xs uppercase font-semibold">
-              in stock
-            </span>
-          </div>
-          <div className="flex flex-col gap-2 lg:gap-5 w-full lg:w-1/2">
-            <div className="flex items-center gap-1">
-              <div className="flex items-center gap-1">
-                {[1, 2, 3, 4].map((_, index) => (
-                  <FaStar
-                    key={index}
-                    className="w-2.75 text-primary font-semibold"
-                  />
-                ))}
-                <FaStarHalf className="w-2.75 text-primary font-semibold" />
+        <section
+          className="relative overflow-hidden"
+          style={{
+            backgroundImage: `linear-gradient(90deg, rgba(120, 0, 10, 0.84) 0%, rgba(120, 0, 10, 0.74) 38%, rgba(120, 0, 10, 0.38) 100%), url(${assets.landscape})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
+        >
+          <div className="absolute inset-0 z-0 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.14),transparent_38%)]" />
+
+          <div className="app-container relative z-10 grid min-h-140 grid-cols-1 items-center pb-20 pt-8 sm:pt-10 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,0.8fr)] lg:pb-32 lg:pt-12">
+            <div className="flex max-w-2xl flex-col gap-4 sm:gap-5">
+              <h1 className="font-display text-3xl font-semibold leading-[1.02] text-white sm:text-5xl lg:text-6xl">
+                Premium Wellness for <br />
+                Everyday Vitality
+              </h1>
+
+              <p className="max-w-xl text-sm leading-7 text-white/90 sm:text-base">
+                Discover a trusted red botanical formula created to support
+                antioxidant balance, daily energy, and a more confident wellness
+                routine for modern living.
+              </p>
+
+              <div className="flex flex-col gap-3 pt-2 sm:flex-row">
+                <button
+                  onClick={() => navigate("/purchase-product")}
+                  className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-primary transition hover:bg-white/90 sm:min-w-46 cursor-pointer"
+                >
+                  <FaCartShopping size={15} />
+                  Buy Now
+                </button>
+
+                <button
+                  onClick={() => navigate("/become-an-affiliate")}
+                  className="inline-flex items-center justify-center gap-2 rounded-full border border-white bg-transparent px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/10 sm:min-w-52 cursor-pointer"
+                >
+                  Join the Network
+                  <FaArrowRight size={12} />
+                </button>
               </div>
-              <h4 className="text-neutral-soft text-xs font-medium">
-                (4.8/5 from 1,200 + users)
-              </h4>
             </div>
-            <div className="flex flex-col">
-              <h1 className="text-neutral-dark text-2xl lg:text-5xl font-semibold">
-                Nourish Your Body.{" "}
-              </h1>
-              <h1 className="text-primary text-2xl lg:text-5xl font-semibold">
-                Elevate Your Lifestyle.{" "}
-              </h1>
-            </div>
-            <div className="w-full">
-              <p className="text-neutral-soft font-medium text-xs lg:text-sm">
-                Discover a premium wellness supplement crafted to support daily
-                vitality, immunity, and mental clarity. Made with carefully
-                selected botanicals and superfruits to help you perform at your
-                best every single day. Join our growing global community of
-                business owners today.
+          </div>
+
+          <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-none z-20">
+            <svg
+              viewBox="0 0 1440 120"
+              className="w-full h-30"
+              preserveAspectRatio="none"
+            >
+              <path
+                d="M0,60 C300,120 600,0 900,60 C1200,120 1400,20 1440,60 L1440,120 L0,120 Z"
+                fill="white"
+              />
+            </svg>
+          </div>
+        </section>
+
+        <div className="app-container flex flex-col gap-10 lg:gap-14">
+          <section className="flex flex-col gap-6 lg:gap-12">
+            <div className="mx-auto flex max-w-3xl flex-col items-center gap-3 text-center">
+              <div className="w-full flex items-center justify-center gap-2">
+                <h2 className="text-2xl font-semibold text-neutral-dark lg:text-4xl">
+                  What This Formula Supports
+                </h2>
+              </div>
+              <p className="text-sm leading-7 text-neutral-soft text-center">
+                Start with the core value of the product and the everyday
+                wellness support it is designed to provide.
               </p>
             </div>
-            <div className="border border-neutral-soft/20 rounded-2xl bg-white shadow flex flex-col gap-3 px-5 py-3 w-full lg:w-[55%] sm:w-1/2">
-              <div
-                className="flex flex-col gap-1 cursor-pointer"
-                onClick={() => setShowUSD((prev) => !prev)}
-              >
-                <h3 className="text-xl font-semibold text-primary">
-                  {showUSD
-                    ? `$${convertNairaToDollar(product.price * productCount)}`
-                    : `₦${(product.price * productCount).toLocaleString()}`}
-                </h3>
-                <p className="text-xs font-medium text-neutral-soft">
-                  Free express shipping for orders over &#8358;1,000,000
-                </p>
-              </div>
-              <div className="flex items-center gap-4 w-full lg:justify-between">
-                <div className="bg-neutral-soft/10 border border-neutral-soft/10 rounded-lg flex items-center gap-3 px-3 py-2 lg:w-[35%]  justify-between">
-                  <button
-                    className="text-neutral-dark text-sm font-semibold cursor-pointer"
-                    onClick={() => manageProductQuantity("deduct")}
-                  >
-                    -
-                  </button>
-                  <span className="text-neutral-dark text-sm font-semibold">
-                    {productCount}
-                  </span>
-                  <button
-                    className="text-neutral-dark text-sm font-semibold cursor-pointer"
-                    onClick={() => manageProductQuantity()}
-                  >
-                    +
-                  </button>
-                </div>
-                <div className="">
-                  <button
-                    onClick={() => navigate("/purchase-product")}
-                    className="flex items-center gap-2 bg-primary text-white font-semibold text-sm rounded-lg px-3 py-2 cursor-pointer"
-                  >
-                    <FaCartShopping size={15} />
-                    Buy Now
-                    <FaArrowRight size={12} />
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-        <section className="flex flex-col gap-6 lg:gap-12">
-          <div className="w-full flex items-center gap-2">
-            <div className="w-1 h-6 bg-primary rounded-t-xl rounded-b-xl"></div>
-            <h2 className="text-xl lg:text-2xl  text-neutral-dark font-semibold">
-              Key Benefits
-            </h2>
-          </div>
-          <div className="flex lg:items-center gap-5 lg:flex-row flex-col">
-            {benefits.map((benefit, index) => (
-              <BenefitCard
-                name={benefit.name}
-                icon={benefit.icon}
-                detail={benefit.detail}
-                key={index}
-              />
-            ))}
-          </div>
-        </section>
-        <section className="flex flex-col gap-6 lg:gap-12">
-          <div className="w-full flex items-center gap-2">
-            <div className="w-1 h-6 bg-primary rounded-t-xl rounded-b-xl"></div>
-            <h2 className="text-xl lg:text-2xl  text-neutral-dark font-semibold">
-              How It Works
-            </h2>
-          </div>
-          <div className="grid grid-cols-1 gap-5 sm:gap-6 lg:grid-cols-3 lg:gap-7 lg:place-items-center">
-            {howItWorks.map((h) => (
-              <HowItWorksCard
-                key={h.id}
-                name={h.name}
-                id={h.id}
-                detail={h.detail}
-              />
-            ))}
-          </div>
-        </section>
-        <section className="flex flex-col gap-6 lg:gap-12">
-          <div className="w-full flex items-center gap-2">
-            <div className="w-1 h-6 bg-primary rounded-t-xl rounded-b-xl"></div>
-            <h2 className="text-xl lg:text-2xl  text-neutral-dark font-semibold">
-              Premium Ingredients
-            </h2>
-          </div>
-          <div className="grid grid-cols-2 gap-4 sm:gap-5 lg:grid-cols-3">
-            {ingredients.map((ingredient, index) => (
-              <IngredientCard
-                key={index}
-                title={ingredient.title}
-                image={ingredient.image}
-                description={ingredient.description}
-              />
-            ))}
-          </div>
-        </section>
-        <section className="flex flex-col gap-6 lg:gap-12">
-          <div className="w-full flex items-center gap-2">
-            <div className="w-1 h-6 bg-primary rounded-t-xl rounded-b-xl"></div>
-            <h2 className="text-xl lg:text-2xl  text-neutral-dark font-semibold">
-              How To Use
-            </h2>
-          </div>
-          <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
-            {howToUse.map((item) => (
-              <HowToUseCard
-                key={item.step}
-                step={item.step}
-                title={item.title}
-                description={item.description}
-              />
-            ))}
-          </div>
-        </section>
-        <section className="flex flex-col gap-6 lg:gap-12">
-          <div className="w-full flex items-center gap-2">
-            <div className="w-1 h-6 bg-primary rounded-t-xl rounded-b-xl"></div>
-            <h2 className="text-xl lg:text-2xl  text-neutral-dark font-semibold">
-              Why Choose us
-            </h2>
-          </div>
-          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {whyChooseUs.map((item) => (
-              <WhyChooseCard
-                key={item.title}
-                icon={item.icon}
-                title={item.title}
-                description={item.description}
-              />
-            ))}
-          </div>
-        </section>
-        <section className="flex flex-col gap-6 lg:gap-12">
-          <div className="w-full flex items-center gap-2">
-            <div className="w-1 h-6 bg-primary rounded-t-xl rounded-b-xl"></div>
-            <h2 className="text-xl lg:text-2xl  text-neutral-dark font-semibold">
-              FAQs
-            </h2>
-          </div>
-          <div className="w-full mx-auto flex flex-col gap-3">
-            {faqs.map((faq) => (
-              <FaqCard
-                key={faq.question}
-                question={faq.question}
-                answer={faq.answer}
-              />
-            ))}
-          </div>
-        </section>
-        <section className="relative flex flex-col gap-6 lg:gap-10">
-          <div className="relative overflow-hidden">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, x: 40 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -40 }}
-                transition={{ duration: 0.25 }}
-                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6"
-              >
-                {reviews.slice(index, index + visibleCount).map((r) => (
-                  <motion.article
-                    key={`${r.name}-${r.title}`}
-                    whileHover={{ y: -3 }}
-                    className="h-full rounded-3xl border border-secondary-dark/70 bg-white p-5 sm:p-6 transition"
-                  >
-                    <div className="flex items-start justify-between gap-3">
-                      <div className="flex flex-col gap-1 min-w-0">
-                        <p className="font-display text-base font-extrabold text-tetiary truncate">
-                          {r.name}
-                        </p>
-                      </div>
-
-                      <Stars rating={r.rating} />
-                    </div>
-
-                    <h3 className="mt-4 font-display text-lg font-extrabold text-tetiary leading-tight">
-                      {r.title}
-                    </h3>
-
-                    <p className="my-2 text-sm text-neutral-soft leading-relaxed">
-                      “{r.remark}”
-                    </p>
-
-                    <span
-                      onClick={() => setReviewAttachement(r.attachment)}
-                      className="cursor-pointer italic hover:underline text-xs text-primary absolute bottom-2"
-                    >
-                      View Attachment
-                    </span>
-                  </motion.article>
-                ))}
-              </motion.div>
-            </AnimatePresence>
-          </div>
-
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-2">
-              <button
-                onClick={prev}
-                className="h-10 w-10 rounded-full border border-secondary-dark/70 bg-white flex items-center justify-center hover:bg-primary hover:text-white transition"
-              >
-                <HiChevronLeft className="text-xl" />
-              </button>
-
-              <button
-                onClick={next}
-                className="h-10 w-10 rounded-full border border-secondary-dark/70 bg-white flex items-center justify-center hover:bg-primary hover:text-white transition"
-              >
-                <HiChevronRight className="text-xl" />
-              </button>
-            </div>
-
-            <div className="flex items-center gap-2">
-              {reviews.map((_, i) => (
-                <button
-                  key={i}
-                  onClick={() => setIndex(i)}
-                  className={[
-                    "h-2.5 rounded-full transition-all duration-300",
-                    index === i ? "w-6 bg-primary" : "w-2.5 bg-secondary-dark",
-                  ].join(" ")}
+            <div className="grid grid-cols-1 gap-4 lg:gap-4 lg:grid-cols-2">
+              {benefits.map((benefit, index) => (
+                <BenefitCard
+                  name={benefit.name}
+                  icon={benefit.icon}
+                  detail={benefit.detail}
+                  key={index}
                 />
               ))}
             </div>
-          </div>
-        </section>
+          </section>
+          <section className="flex flex-col gap-6 lg:gap-12">
+            <div className="mx-auto flex max-w-3xl flex-col items-center gap-3 text-center">
+              <div className="w-full flex items-center justify-center gap-2">
+                <h2 className="text-2xl font-semibold text-neutral-dark lg:text-4xl">
+                  Inside the Formula
+                </h2>
+              </div>
+              <p className="text-center text-sm leading-7 text-neutral-soft">
+                Explore the ingredient blend behind the formula and the wellness
+                role each component is known to support.
+              </p>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-5 lg:gap-6">
+              {ingredients.slice(0, displayCount).map((ingredient, index) => (
+                <IngredientCard
+                  key={index}
+                  title={ingredient.title}
+                  image={ingredient.image}
+                  description={ingredient.description}
+                />
+              ))}
+            </div>
+            {isMobile && visibleIng < ingredients.length && (
+              <div className="flex justify-end lg:hidden">
+                <button
+                  onClick={handleViewMore}
+                  className="flex justify-end  text-primary font-semibold transition duration-300 underline"
+                >
+                  View More
+                </button>
+              </div>
+            )}
+          </section>
+          <section className="flex flex-col gap-6 lg:gap-12">
+            <div className="mx-auto flex max-w-3xl flex-col items-center gap-3 text-center">
+              <div className="w-full flex items-center justify-center gap-2">
+                <h2 className="text-2xl font-semibold text-neutral-dark lg:text-4xl">
+                  Simple Daily Use
+                </h2>
+              </div>
+              <p className="text-center text-sm leading-7 text-neutral-soft">
+                Understand how to make the product part of a steady, practical
+                wellness routine.
+              </p>
+            </div>
+            <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
+              {howToUse.map((item) => (
+                <HowToUseCard
+                  key={item.step}
+                  step={item.step}
+                  title={item.title}
+                  description={item.description}
+                />
+              ))}
+            </div>
+          </section>
+          <section className="flex flex-col gap-6 lg:gap-12">
+            <div className="mx-auto flex max-w-3xl flex-col items-center gap-3 text-center">
+              <div className="w-full flex items-center justify-center gap-2">
+                <h2 className="text-2xl font-semibold text-neutral-dark lg:text-4xl">
+                  Why People Trust RedRose
+                </h2>
+              </div>
+              <p className="text-center text-sm leading-7 text-neutral-soft">
+                See what makes the experience feel dependable, guided, and easy
+                to recommend to others.
+              </p>
+            </div>
+            <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+              {whyChooseUs.map((item) => (
+                <WhyChooseCard
+                  key={item.title}
+                  icon={item.icon}
+                  title={item.title}
+                  description={item.description}
+                />
+              ))}
+            </div>
+          </section>
+          <section className="flex flex-col gap-6 lg:gap-12">
+            <div className="mx-auto flex max-w-3xl flex-col items-center gap-3 text-center">
+              <div className="w-full flex items-center justify-center gap-2">
+                <h2 className="text-2xl font-semibold text-neutral-dark lg:text-4xl">
+                  How the Opportunity Works
+                </h2>
+              </div>
+              <p className="text-center text-sm leading-7 text-neutral-soft">
+                Follow a simple path from purchase to product use and then into
+                sharing the experience with others.
+              </p>
+            </div>
+            <div className="grid grid-cols-1 gap-5 sm:gap-6 lg:grid-cols-3 lg:gap-7 lg:place-items-center">
+              {howItWorks.map((h) => (
+                <HowItWorksCard
+                  key={h.id}
+                  name={h.name}
+                  id={h.id}
+                  detail={h.detail}
+                />
+              ))}
+            </div>
+          </section>
+          <section className="relative flex flex-col gap-6 lg:gap-10">
+            <div className="mx-auto flex max-w-3xl flex-col items-center gap-3 text-center">
+              <div className="w-full flex items-center justify-center gap-2">
+                <h2 className="text-2xl font-semibold text-neutral-dark lg:text-4xl">
+                  Real Customer Feedback
+                </h2>
+              </div>
+              <p className="text-center text-sm leading-7 text-neutral-soft">
+                Read a few encouraging experiences shared by people who stayed
+                consistent with the product in their daily routine.
+              </p>
+            </div>
+            <div className="relative overflow-hidden">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, x: 40 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -40 }}
+                  transition={{ duration: 0.25 }}
+                  className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6"
+                >
+                  {reviews.slice(index, index + visibleCount).map((r) => (
+                    <motion.article
+                      key={`${r.name}`}
+                      whileHover={{ y: -3 }}
+                      className="h-full rounded-[1.75rem] border border-secondary-dark/70 bg-white p-5 shadow-[0_16px_36px_-30px_rgba(15,14,20,0.16)] transition sm:p-6"
+                    >
+                      <div className="flex items-center gap-3">
+                        <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-primary text-sm font-bold text-white">
+                          {getInitials(r.name)}
+                        </div>
+                        <div className="min-w-0">
+                          <p className="font-display text-base font-extrabold text-tetiary truncate">
+                            {r.name}
+                          </p>
+                          <p className="text-xs text-neutral-soft">
+                            {r.source}
+                          </p>
+                        </div>
+                      </div>
+
+                      <p className="mt-5 text-sm leading-7 text-neutral-soft">
+                        "{r.remark}"
+                      </p>
+
+                      <div className="mt-5 flex items-end justify-between gap-3">
+                        <div className="flex shrink-0 flex-col items-end gap-2">
+                          <Stars rating={r.rating} />
+                          <button
+                            type="button"
+                            onClick={() => setReviewAttachement(r.attachment)}
+                            className="text-xs font-semibold text-primary transition hover:underline"
+                          >
+                            View Attachment
+                          </button>
+                        </div>
+                      </div>
+                    </motion.article>
+                  ))}
+                </motion.div>
+              </AnimatePresence>
+            </div>
+
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={prev}
+                  className="h-10 w-10 rounded-full border border-secondary-dark/70 bg-white flex items-center justify-center hover:bg-primary hover:text-white transition"
+                >
+                  <HiChevronLeft className="text-xl" />
+                </button>
+
+                <button
+                  onClick={next}
+                  className="h-10 w-10 rounded-full border border-secondary-dark/70 bg-white flex items-center justify-center hover:bg-primary hover:text-white transition"
+                >
+                  <HiChevronRight className="text-xl" />
+                </button>
+              </div>
+
+              <div className="flex items-center gap-2">
+                {reviews.map((_, i) => (
+                  <button
+                    key={i}
+                    onClick={() => setIndex(i)}
+                    className={[
+                      "h-2.5 rounded-full transition-all duration-300",
+                      index === i
+                        ? "w-6 bg-primary"
+                        : "w-2.5 bg-secondary-dark",
+                    ].join(" ")}
+                  />
+                ))}
+              </div>
+            </div>
+          </section>
+          <section className="flex flex-col gap-6 lg:gap-12">
+            <div className="mx-auto flex max-w-3xl flex-col items-center gap-3 text-center">
+              <div className="w-full flex items-center justify-center gap-2">
+                <h2 className="text-2xl font-semibold text-neutral-dark lg:text-4xl">
+                  Questions People Ask
+                </h2>
+              </div>
+              <p className="text-center text-sm leading-7 text-neutral-soft">
+                Get quick answers to the most common questions about product
+                use, consistency, and getting started.
+              </p>
+            </div>
+            <div className="w-full mx-auto flex flex-col gap-3">
+              {faqs.map((faq) => (
+                <FaqCard
+                  key={faq.question}
+                  question={faq.question}
+                  answer={faq.answer}
+                />
+              ))}
+            </div>
+          </section>
+        </div>
       </div>
       <AttachmentModal
         image={reviewAttachement}

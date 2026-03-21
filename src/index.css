@@ -12,8 +12,8 @@
   --color-secondary-dark: #e5e7eb;
   --font-sans: "Inter", system-ui, sans-serif;
   --font-display: "Space Grotesk", system-ui, sans-serif;
-  --text-sm:16px;
-  --text-xs:14px;
+  --text-sm: 16px;
+  --text-xs: 14px;
 }
 
 .app-container {

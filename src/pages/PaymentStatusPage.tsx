@@ -1,11 +1,11 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import { toast } from "sonner";
 import { FaWhatsapp } from "react-icons/fa";
-import { HiOutlineArrowLeft } from "react-icons/hi";
 import { useNavigate } from "react-router-dom";
 import type { PendingOrder } from "../lib/interfaces";
+import { convertNairaToDollar } from "../utilities/formatterUtility";
 
-const WHATSAPP_NUMBER = "2348140041861";
+const WHATSAPP_NUMBER = "+1 317 531 3547";
 
 const naira = (n: number) =>
   new Intl.NumberFormat("en-NG", { style: "currency", currency: "NGN" }).format(
@@ -18,6 +18,7 @@ const PaymentStatus: React.FC = () => {
 
   const [order, setOrder] = useState<PendingOrder | null>(null);
   const [receiptFile, setReceiptFile] = useState<File | null>(null);
+  const [showUSD, setShowUSD] = useState(true);
 
   useEffect(() => {
     const raw = sessionStorage.getItem("pendingOrder");
@@ -32,7 +33,6 @@ const PaymentStatus: React.FC = () => {
       sessionStorage.removeItem("pendingOrder");
       navigate("/purchase-product");
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [navigate]);
 
   const statusUI = useMemo(() => {
@@ -41,13 +41,13 @@ const PaymentStatus: React.FC = () => {
     if (order.status === "verified") {
       return {
         title: "Payment Verified",
-        hint: "Your payment has been confirmed. We’ll proceed with processing your order.",
+        hint: "Your payment has been confirmed. We will proceed with processing your order.",
       };
     }
 
     return {
       title: "Payment Pending",
-      hint: "Your receipt has been uploaded successfully. We’re currently verifying your payment. This usually takes 5–15 minutes.",
+      hint: "Your receipt has been uploaded successfully. We are currently verifying your payment. This usually takes 5-15 minutes.",
     };
   }, [order]);
 
@@ -62,12 +62,12 @@ const PaymentStatus: React.FC = () => {
       `Order ID: ${order.orderId}\n` +
       `Product: ${order.productName}\n` +
       `Quantity: ${order.qty}\n` +
-      `Amount: ${naira(order.amount)}\n` +
+      `Amount: ${showUSD ? `$${convertNairaToDollar(order.amount)}` : naira(order.amount)}\n` +
       `Name: ${order.fullName}\n` +
       `Address: ${order.address}\n` +
       `Date: ${dateText}\n\n` +
       `Receipt: ${receiptFile?.name || order.receiptFileName || "Attached"}\n\n` +
-      `Hello, I’m following up on my payment. Please verify my receipt.\n` +
+      `Hello, I am following up on my payment. Please verify my receipt.\n` +
       `Note: I will attach the receipt image/PDF in this chat.`;
 
     return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`;
@@ -102,41 +102,61 @@ const PaymentStatus: React.FC = () => {
   const dateText = dt.toLocaleString();
 
   return (
-    <section className="w-full">
-      <div className="mx-auto w-full max-w-xl">
-        <div className="rounded-2xl border border-secondary-dark/70 bg-white p-5 sm:p-6 shadow-md shadow-black/5">
-          <div className="flex items-center justify-between">
-            <button
-              onClick={() => navigate(-1)}
-              className="inline-flex items-center gap-2 text-sm font-bold text-neutral-soft hover:text-tetiary transition"
-            >
-              <HiOutlineArrowLeft className="text-lg" />
-              Back
-            </button>
-
-            <span className="text-[11px] font-bold tracking-widest uppercase text-neutral-soft">
-              Status
-            </span>
+    <section className="app-container w-full">
+      <div className="mx-auto w-full max-w-xl mt-13">
+        <div className="p-0">
+          <div className="mx-auto mt-5 flex max-w-3xl flex-col items-center gap-3 text-center">
+            <h1 className="font-display text-xl font-extrabold text-tetiary sm:text-2xl">
+              Payment Update
+            </h1>
+            <p className="text-sm leading-7 text-neutral-soft">
+              Review your current payment status, confirm your order details,
+              and continue on WhatsApp if you still need to share your receipt.
+            </p>
           </div>
-          <div className="mt-5 flex flex-col items-center text-center">
-            <div className="h-14 w-14 rounded-full bg-primary/10 flex items-center justify-center">
-              <div className="h-10 w-10 rounded-full bg-primary text-white flex items-center justify-center font-extrabold">
-                ✓
-              </div>
+
+          <div className="mt-5 rounded-[1.5rem] border border-secondary-dark/60 bg-[#fff7f8] p-5 text-center sm:p-6">
+            <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-primary text-white shadow-[0_12px_28px_-18px_rgba(231,0,11,0.9)]">
+              OK
             </div>
 
             <h1 className="mt-4 font-display text-2xl font-extrabold text-tetiary">
               {statusUI.title}
             </h1>
 
-            <p className="mt-2 text-sm text-neutral-soft max-w-md">
+            <p className="mx-auto mt-2 max-w-md text-sm leading-7 text-neutral-soft">
               {statusUI.hint}
             </p>
           </div>
-          <div className="mt-6 rounded-2xl border border-secondary-dark/70 bg-secondary/30 p-4">
-            <p className="text-[11px] font-bold tracking-widest uppercase text-neutral-soft">
-              Order Summary
-            </p>
+
+          <div className="mt-6 rounded-2xl border border-secondary-dark/70 bg-white p-4">
+            <div className="flex items-center justify-between gap-3">
+              <p className="text-[11px] font-bold tracking-widest uppercase text-neutral-soft">
+                Order Summary
+              </p>
+              <div className="inline-flex rounded-full border border-secondary-dark/70 bg-secondary/20 p-1">
+                <button
+                  type="button"
+                  onClick={() => setShowUSD(true)}
+                  className={[
+                    "rounded-full px-3 py-1 text-[11px] font-bold uppercase transition",
+                    showUSD ? "bg-primary text-white" : "text-neutral-soft",
+                  ].join(" ")}
+                >
+                  USD
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setShowUSD(false)}
+                  className={[
+                    "rounded-full px-3 py-1 text-[11px] font-bold uppercase transition",
+                    !showUSD ? "bg-primary text-white" : "text-neutral-soft",
+                  ].join(" ")}
+                >
+                  NGN
+                </button>
+              </div>
+            </div>
 
             <div className="mt-4 grid grid-cols-1 gap-3 text-sm">
               <div className="flex items-center justify-between gap-3">
@@ -153,9 +173,18 @@ const PaymentStatus: React.FC = () => {
 
               <div className="flex items-center justify-between gap-3">
                 <span className="text-neutral-soft">Amount</span>
-                <span className="font-bold text-tetiary">
-                  {naira(order.amount)}
-                </span>
+                <div className="text-right">
+                  <p className="font-bold text-tetiary">
+                    {showUSD
+                      ? `$${convertNairaToDollar(order.amount)}`
+                      : naira(order.amount)}
+                  </p>
+                  <p className="text-[11px] text-neutral-soft">
+                    {showUSD
+                      ? naira(order.amount)
+                      : `$${convertNairaToDollar(order.amount)}`}
+                  </p>
+                </div>
               </div>
 
               <div className="flex items-center justify-between gap-3">
@@ -164,6 +193,7 @@ const PaymentStatus: React.FC = () => {
               </div>
             </div>
           </div>
+
           <div className="mt-5">
             <input
               ref={fileRef}
@@ -191,9 +221,10 @@ const PaymentStatus: React.FC = () => {
             </button>
 
             <p className="mt-2 text-[11px] text-neutral-soft text-center">
-              You’ll select the receipt here, then attach it in WhatsApp.
+              You will select the receipt here, then attach it in WhatsApp.
             </p>
           </div>
+
           <a
             href={buildWhatsAppLink()}
             target="_blank"

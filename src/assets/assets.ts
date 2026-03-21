@@ -19,6 +19,7 @@ import att1 from "./images/att1.jpeg";
 import att2 from "./images/att2.jpeg";
 import att3 from "./images/att3.jpeg";
 import att4 from "./images/att4.jpeg";
+import landscape from "./images/landscape.jpg";
 
 const assets = {
   logo1,
@@ -42,5 +43,6 @@ const assets = {
   att2,
   att3,
   att4,
+  landscape
 };
 export default assets;

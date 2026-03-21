@@ -7,18 +7,16 @@ const HowToUseCard: React.FC<HowToUseCardProps> = ({
   description,
 }) => {
   return (
-    <div className="group h-full rounded-2xl border border-secondary-dark/70 bg-white p-5 shadow-md shadow-black/5 transition hover:-translate-y-0.5">
-      <span className="inline-flex items-center justify-center h-8 w-8 rounded-full bg-primary/10 text-primary text-xs font-bold">
+    <div className="group h-full rounded-3xl border border-secondary-dark/70 bg-white p-5 shadow-[0_16px_40px_-30px_rgba(15,14,20,0.12)] transition duration-300 hover:-translate-y-0.5">
+      <span className="inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-primary text-sm font-bold text-white shadow-[0_12px_28px_-18px_rgba(231,0,11,0.9)]">
         {step}
       </span>
 
-      <h4 className="mt-3 font-display text-base font-bold text-tetiary">
+      <h4 className="mt-4 font-display text-base font-extrabold text-tetiary">
         {title}
       </h4>
 
-      <p className="lg:text-sm text-xs text-neutral-soft leading-relaxed">
-        {description}
-      </p>
+      <p className="mt-2 text-sm leading-7 text-neutral-soft">{description}</p>
     </div>
   );
 };

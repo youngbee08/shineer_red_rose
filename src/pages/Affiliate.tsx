@@ -1,219 +1,206 @@
 import React from "react";
-import assets from "../assets/assets";
-import { MdGroupAdd } from "react-icons/md";
-import { Link } from "react-router-dom";
 import BenefitCard from "../components/common/BenefitCard";
 import type { BenefitCardProps } from "../lib/interfaces";
-import { GiProfit } from "react-icons/gi";
-import { FaDownload, FaTools } from "react-icons/fa";
-import { MdVerified } from "react-icons/md";
+
 import LegCard from "../components/common/LegCard";
 import FaqCard from "../components/common/FaqCard";
+import { HiOutlineDocumentText } from "react-icons/hi";
+import { GiMoneyStack, GiToolbox, GiCheckMark } from "react-icons/gi";
 
 const Affiliate: React.FC = () => {
   const values: BenefitCardProps[] = [
     {
-      name: "Attractive Earning Potential",
-      icon: <GiProfit />,
+      name: "Income-Focused Opportunity",
+      icon: <GiMoneyStack className="text-base" />,
       detail:
-        "Benefit from competitive owners pricing that allows you to earn as you grow your network.",
+        "Start with a product people can understand and build income gradually through consistent sharing.",
     },
     {
-      name: "Ready-to-Use Marketing Tools",
-      icon: <FaTools />,
+      name: "Simple Tools to Get Started",
+      icon: <GiToolbox className="text-base" />,
       detail:
-        "Get access to professionally designed digital materials to help you share Double Red Rose with confidence.",
+        "Use ready-made materials and a clearer structure to begin promoting with more confidence.",
     },
     {
-      name: "Trusted Quality",
-      icon: <MdVerified />,
+      name: "A Product You Can Stand Behind",
+      icon: <GiCheckMark className="text-base" />,
       detail:
-        "Represent a carefully formulated wellness product made with quality ingredients and trusted production standards.",
+        "It is easier to recommend a product when the quality story, formula focus, and message feel trustworthy.",
     },
   ];
 
   const faqs = [
     {
-      question: "Is this product safe to use?",
+      question: "Can a beginner start as an affiliate?",
       answer:
-        "Yes. Our products are made with carefully sourced ingredients and follow recommended safety standards.",
+        "Yes. The process is structured to be approachable, even if this is your first time building with a referral model.",
     },
     {
-      question: "Do I need experience to become an affiliate?",
+      question: "Do I need to use the product first?",
       answer:
-        "No experience is required. You’ll receive guidance and support to help you get started.",
+        "Using the product helps you speak more confidently from personal experience, which often makes sharing easier.",
     },
     {
-      question: "How soon can I see results?",
+      question: "What do I need before joining?",
       answer:
-        "Results vary depending on consistency and individual response, but many users notice changes over time.",
+        "A clear decision to begin, a willingness to stay consistent, and the readiness to follow the available guidance.",
     },
     {
-      question: "How do I get started?",
+      question: "How do I choose the right placement?",
       answer:
-        "Simply reach out to us or follow the sign-up process. We’ll guide you step by step.",
+        "You can choose the leg that best suits your strategy, depending on whether you want faster momentum or balance.",
     },
   ];
+
   return (
     <div className="flex flex-col gap-10 lg:gap-14">
-      <section className="flex lg:flex-row flex-col-reverse gap-6 lg:gap-12 items-start">
-        <div className="w-full lg:w-1/2 h-full bg-neutral-soft/30 backdrop-blur-2xl rounded-2xl">
-          <img
-            src={assets.member}
-            alt="about-image"
-            className="w-full h-full object-cover rounded-2xl"
-          />
-        </div>
-        <div className="flex flex-col gap-2 lg:gap-5 w-full lg:w-1/2">
-          <h1 className="text-neutral-dark text-2xl lg:text-5xl font-semibold">
-            Become an affiliate business owner{" "}
+      <section className="bg-primary flex items-center justify-center py-7 text-center lg:py-17">
+        <div className="flex max-w-3xl flex-col gap-2 px-4 lg:gap-3">
+          <h1 className="font-display text-xl font-extrabold text-white sm:text-2xl lg:text-3xl">
+            Build with the RedRose Opportunity
           </h1>
 
-          <div className="w-full">
-            <div className="flex flex-col gap-3">
-              <p className="text-neutral-soft font-medium text-xs lg:text-sm">
-                Join a growing community of wellness advocates and earn by
-                sharing a premium daily health product people can trust. As a
-                business owner, you gain access to a proven wellness formula,
-                simple onboarding, and an opportunity to build income while
-                promoting better living.
-              </p>
+          <p className="text-xs leading-7 text-white/90 sm:text-sm lg:text-base lg:leading-8">
+            This page helps visitors understand the affiliate side clearly: what
+            the opportunity offers, how to begin, where to place, and what
+            action to take next.
+          </p>
+        </div>
+      </section>
 
-              <p className="text-neutral-soft font-medium text-xs lg:text-sm">
-                Start with your first order, use the product consistently, and
-                confidently recommend it to others—turning everyday wellness
-                into long-term value.
-              </p>
+      <div className="app-container flex flex-col gap-10 lg:gap-14">
+        <section className="flex flex-col gap-8 lg:gap-14">
+          <div className="mx-auto flex max-w-3xl flex-col items-center gap-3 text-center">
+            <div className="flex w-full items-center justify-center gap-2">
+              <h2 className="text-2xl font-semibold text-neutral-dark lg:text-4xl">
+                What You Are Joining
+              </h2>
             </div>
+            <p className="text-center text-sm leading-7 text-neutral-soft">
+              Start here to understand the opportunity before choosing your
+              placement or downloading the compensation details.
+            </p>
           </div>
-          <div className="w-fit">
-            <Link
-              to={
-                "https://www.affluenceglobaldream.com/en/gladys99/ng/agl/ref-member/LEFT"
-              }
-              target="_blank"
-              className="flex items-center gap-2 bg-primary text-white font-semibold text-sm rounded-lg px-3 py-2 cursor-pointer"
-            >
-              <MdGroupAdd size={15} />
-              Join the Network{" "}
-            </Link>
-          </div>
-        </div>
-      </section>
-      <section className="flex flex-col gap-6 lg:gap-12">
-        <div className="w-full flex items-center gap-2">
-          <div className="w-1 h-6 bg-primary rounded-t-xl rounded-b-xl"></div>
-          <h2 className="text-xl lg:text-2xl  text-neutral-dark font-semibold">
-            Why Join Us?
-          </h2>
-        </div>
-        <div className="flex items-center gap-5 lg:flex-row flex-col">
-          {values.map((value, index) => (
-            <BenefitCard
-              name={value.name}
-              icon={value.icon}
-              detail={value.detail}
-              key={index}
-            />
-          ))}
-        </div>
-      </section>
-      <section className="flex flex-col gap-6 lg:gap-12">
-        <div className="w-full flex items-center gap-2">
-          <div className="w-1 h-6 bg-primary rounded-t-xl rounded-b-xl"></div>
-          <h2 className="text-xl lg:text-2xl  text-neutral-dark font-semibold">
-            Chose Your Placement
-          </h2>
-        </div>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 sm:gap-6">
-          <LegCard
-            tag="Fast Growth"
-            title="Left Leg"
-            description="Position yourself in the primary spillover leg for maximum team momentum."
-            cta="Join Left Leg"
-            href={
-              "https://www.affluenceglobaldream.com/en/gladys99/ng/agl/ref-member/LEFT"
-            }
-          />
 
-          <LegCard
-            tag="Strategic"
-            title="Right Leg"
-            description="Ideal for balanced team building and maximizing personal bonus overrides."
-            cta="Join Right Leg"
-            href={
-              "https://www.affluenceglobaldream.com/en/gladys99/ng/agl/ref-member/RIGHT"
-            }
-          />
-        </div>
-      </section>
-      <section className="flex flex-col gap-5 sm:gap-6 lg:gap-10">
-        <div className="flex items-center gap-3">
-          <div className="w-1 h-6 sm:h-7 bg-primary rounded-full" />
-          <h2 className="font-display text-lg sm:text-xl lg:text-2xl text-tetiary font-extrabold">
-            Compensation & Package
-          </h2>
-        </div>
-        <div className="rounded-2xl border border-secondary-dark/70 bg-white p-4 sm:p-6 shadow-md shadow-black/5">
-          <div className="grid grid-cols-1 md:grid-cols-[minmax(0,420px)_1fr] lg:grid-cols-[minmax(0,460px)_auto] gap-5 sm:gap-6 items-center">
-            <div className="w-full">
-              <div className="w-full rounded-2xl bg-white shadow-lg shadow-black/10 overflow-hidden border border-secondary-dark/60">
-                <div className="h-14 bg-primary flex items-center px-4">
-                  <span className="text-white text-xs font-bold tracking-widest uppercase">
-                    COMP PLAN {new Date().getFullYear()}
-                  </span>
+          <div className="flex flex-col lg:items-center justify-between gap-10 lg:flex-row">
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:">
+              {[
+                {
+                  title: "Product-Led Entry",
+                  desc: "Begin with a product that is easier to understand, use, and recommend.",
+                },
+                {
+                  title: "Network Growth",
+                  desc: "Grow by sharing your experience and expanding your referral reach steadily.",
+                },
+                {
+                  title: "Structured Placement",
+                  desc: "Choose where you want to enter so your growth strategy feels intentional.",
+                },
+                {
+                  title: "Long-Term Potential",
+                  desc: "Build momentum over time through consistency, trust, and clearer follow-through.",
+                },
+              ].map((item, i) => (
+                <div
+                  key={i}
+                  className="rounded-2xl border border-secondary-dark/60 p-4 transition hover:border-primary"
+                >
+                  <h4 className="text-sm font-semibold text-neutral-dark lg:text-base">
+                    {item.title}
+                  </h4>
+                  <p className="mt-1 text-xs text-neutral-soft lg:text-sm">
+                    {item.desc}
+                  </p>
                 </div>
-
-                <div className="p-4 sm:p-5">
-                  <div className="h-2 w-3/4 rounded bg-secondary-dark/70" />
-                  <div className="mt-3 space-y-2">
-                    <div className="h-2 w-full rounded bg-secondary-dark/60" />
-                    <div className="h-2 w-11/12 rounded bg-secondary-dark/60" />
-                    <div className="h-2 w-10/12 rounded bg-secondary-dark/60" />
-                    <div className="h-2 w-8/12 rounded bg-secondary-dark/60" />
-                  </div>
-
-                  <div className="mt-6 flex items-center justify-center">
-                    <div className="rounded-md border border-secondary-dark/70 px-3 py-1 text-[10px] font-bold text-neutral-soft">
-                      PPTX
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <p className="mt-3 text-xs sm:text-sm text-neutral-soft">
-                Download our detailed guide to bonuses and reward structures.
-              </p>
-            </div>
-            <div className="flex md:justify-start lg:justify-end">
-              <a
-                href={"/complan.pptx"}
-                download
-                className="inline-flex w-full md:w-fit items-center justify-center gap-2 rounded-xl bg-primary px-5 py-3 text-sm font-bold text-white shadow-md shadow-black/10 hover:brightness-110 transition"
-              >
-                <FaDownload />
-                Download Package Details (PPTX)
-              </a>
+              ))}
             </div>
           </div>
-        </div>
-      </section>
-      <section className="flex flex-col gap-6 lg:gap-12">
-        <div className="w-full flex items-center gap-2">
-          <div className="w-1 h-6 bg-primary rounded-t-xl rounded-b-xl"></div>
-          <h2 className="text-xl lg:text-2xl  text-neutral-dark font-semibold">
-            FAQs
-          </h2>
-        </div>
-        <div className="w-full mx-auto flex flex-col gap-3">
-          {faqs.map((faq) => (
-            <FaqCard
-              key={faq.question}
-              question={faq.question}
-              answer={faq.answer}
+        </section>
+
+        <section className="flex flex-col gap-6 lg:gap-12">
+          <div className="mx-auto max-w-xl text-center">
+            <h2 className="text-2xl font-bold text-neutral-dark lg:text-4xl">
+              Why This Opportunity Is Easy to Share
+            </h2>
+            <p className="mt-2 text-sm text-neutral-soft lg:text-base">
+              Clear benefits that make it simple to understand, trust, and
+              confidently recommend.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 gap-4 lg:grid-cols-2 lg:gap-4">
+            {values.map((value, index) => (
+              <BenefitCard
+                name={value.name}
+                icon={value.icon}
+                detail={value.detail}
+                key={index}
+              />
+            ))}
+          </div>
+        </section>
+
+        <section className="flex flex-col gap-6 lg:gap-12">
+          <div className="mx-auto flex max-w-3xl flex-col items-center gap-3 text-center">
+            <div className="flex w-full items-center justify-center gap-2">
+              <h2 className="text-2xl font-semibold text-neutral-dark lg:text-4xl">
+                Choose Your Placement
+              </h2>
+            </div>
+            <p className="text-center text-sm leading-7 text-neutral-soft">
+              Pick the entry path that best fits the kind of growth strategy you
+              want to build from the start, or download the full compensation
+              plan to see all details.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
+            <LegCard
+              title="Left Leg"
+              description="Position yourself in the primary spillover leg for maximum team momentum."
+              cta="Join Left Leg"
+              href="https://www.affluenceglobaldream.com/en/olawolu66/us/agl/ref-member/LEFT"
             />
-          ))}
-        </div>
-      </section>
+
+            <LegCard
+              title="Right Leg"
+              description="Ideal for balanced team building and effectively maximizing personal bonus overrides."
+              cta="Join Right Leg"
+              href="https://www.affluenceglobaldream.com/en/olawolu66/us/agl/ref-member/RIGHT"
+            />
+
+            <LegCard
+              title="Compensation Guide"
+              description="See the reward structure clearly and download the full guide to make an informed decision."
+              cta="Download PPTX"
+              href="/complan.pptx"
+              icon={<HiOutlineDocumentText className="text-xl" />}
+            />
+          </div>
+        </section>
+
+        <section className="flex flex-col gap-6 lg:gap-12">
+          <div className="mx-auto flex max-w-3xl flex-col items-center gap-3 text-center">
+            <div className="flex w-full items-center justify-center gap-2">
+              <h2 className="text-2xl font-semibold text-neutral-dark lg:text-4xl">
+                Common Questions
+              </h2>
+            </div>
+            <p className="text-center text-sm leading-7 text-neutral-soft">
+              Answer the usual questions first so visitors know what to expect
+              before they take action.
+            </p>
+          </div>
+          <div className="mx-auto flex w-full flex-col gap-3">
+            {faqs.map((faq) => (
+              <FaqCard
+                key={faq.question}
+                question={faq.question}
+                answer={faq.answer}
+              />
+            ))}
+          </div>
+        </section>
+      </div>
     </div>
   );
 };
