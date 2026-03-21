@@ -35,6 +35,7 @@ const LegCard: React.FC<LegCardProps> = ({
             to={href}
             target="_blank"
             className=" py-2 items-center justify-center rounded-[1.75rem] bg-primary px-8 text-base font-semibold text-white transition hover:brightness-110 inline-flex w-full"
+            download={cta === "Download PDF" && true}
           >
             {cta}
           </Link>

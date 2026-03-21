@@ -62,8 +62,8 @@ html {
 
 * {
   scrollbar-width: thin;
-  scrollbar-color: color-mix(in oklab, var(--color-primary) 55%, transparent)
-    transparent;
+  scrollbar-color: color-mix(in oklab, #fff 100%, transparent)
+    var(--color-primary);
 }
 
 :disabled {

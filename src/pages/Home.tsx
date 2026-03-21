@@ -296,7 +296,7 @@ const Home: React.FC = () => {
         <section
           className="relative overflow-hidden"
           style={{
-            backgroundImage: `linear-gradient(90deg, rgba(120, 0, 10, 0.84) 0%, rgba(120, 0, 10, 0.74) 38%, rgba(120, 0, 10, 0.38) 100%), url(${assets.landscape})`,
+            backgroundImage: `linear-gradient(90deg, rgba(120, 0, 10, 0.84) 0%, rgba(120, 0, 10, 0.74) 38%, rgba(120, 0, 10, 0.38) 100%), url(${assets.landscape2})`,
             backgroundSize: "cover",
             backgroundPosition: "center",
           }}

@@ -61,9 +61,8 @@ const Affiliate: React.FC = () => {
           </h1>
 
           <p className="text-xs leading-7 text-white/90 sm:text-sm lg:text-base lg:leading-8">
-            This page helps visitors understand the affiliate side clearly: what
-            the opportunity offers, how to begin, where to place, and what
-            action to take next.
+            Understand the affiliate opportunity at a glance, what you gain, how
+            to start, and the exact steps to begin earning.{" "}
           </p>
         </div>
       </section>
@@ -171,8 +170,8 @@ const Affiliate: React.FC = () => {
             <LegCard
               title="Compensation Guide"
               description="See the reward structure clearly and download the full guide to make an informed decision."
-              cta="Download PPTX"
-              href="/complan.pptx"
+              cta="Download PDF"
+              href="/complan.pdf"
               icon={<HiOutlineDocumentText className="text-xl" />}
             />
           </div>
