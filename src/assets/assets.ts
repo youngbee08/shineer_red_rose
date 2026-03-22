@@ -21,7 +21,7 @@ import att3 from "./images/att3.jpeg";
 import att4 from "./images/att4.jpeg";
 import landscape from "./images/landscape.jpg";
 import landscape2 from "./images/landscape2.png";
-import usaFlyer from "./images/usaFlyer.png";
+import usaFlyer from "./images/usaFlyer.jpeg";
 import nigeriaFlyer from "./images/nigeriaFlyer.png";
 
 const assets = {

@@ -4,7 +4,10 @@ import { HiOutlineClipboardCopy } from "react-icons/hi";
 import product from "../lib/productDetails";
 import type { PendingOrder } from "../lib/interfaces";
 import { useNavigate } from "react-router-dom";
-import { convertNairaToDollar } from "../utilities/formatterUtility";
+import {
+  convertNairaToDollar,
+  getAltPrice,
+} from "../utilities/formatterUtility";
 
 const WHATSAPP_NUMBER = "13175313547";
 
@@ -324,11 +327,15 @@ const PurchasePage: React.FC = () => {
                 Total Amount to Pay
               </p>
               <p className="mt-1 text-xs text-neutral-soft">
-                {showUSD ? naira(amount) : `$${convertNairaToDollar(amount)}`}
+                {showUSD
+                  ? naira(getAltPrice(amount))
+                  : `$${getAltPrice(convertNairaToDollar(amount))}`}
               </p>
             </div>
             <p className="font-display text-xl font-extrabold text-primary">
-              {showUSD ? `$${convertNairaToDollar(amount)}` : naira(amount)}
+              {showUSD
+                ? `$${getAltPrice(convertNairaToDollar(amount))}`
+                : naira(getAltPrice(amount))}
             </p>
           </div>
           <div className="mt-5">

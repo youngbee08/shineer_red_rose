@@ -41,7 +41,7 @@ const Home: React.FC = () => {
     : "nigeria";
 
   const [region, setRegion] = useState<"nigeria" | "usa">(defaultRegion);
-  const [showFlyerModal, setShowFlyerModal] = useState(true);
+  const [showFlyerModal, setShowFlyerModal] = useState(false);
   const [flyerRegion, setFlyerRegion] = useState<"nigeria" | "usa">(
     defaultRegion,
   );
@@ -272,12 +272,21 @@ const Home: React.FC = () => {
     },
   ];
 
-  const packages = [
-    { name: "Associate", count: 1 },
-    { name: "Promoter", count: 3 },
-    { name: "Business Builder", count: 15 },
-    { name: "Business Owner", count: 30 },
+  const dollarPricing = [
+    { name: "Associate", count: 1, price: 65 },
+    { name: "Promoter", count: 3, price: 195 },
+    { name: "Business Builder", count: 15, price: 600, discount: 975 },
+    { name: "Business Owner", count: 30, price: 1200, discount: 1950 },
   ];
+
+  const nairaPricing = [
+    { name: "Associate", count: 1, price: 73600 },
+    { name: "Promoter", count: 3, price: 200000, discount: 220800 },
+    { name: "Business Builder", count: 15, price: 840000, discount: 1104000 },
+    { name: "Business Owner", count: 30, price: 1672000, discount: 2208000 },
+  ];
+
+  const packages = region === "nigeria" ? nairaPricing : dollarPricing;
 
   const [index, setIndex] = useState(0);
 
@@ -441,17 +450,6 @@ const Home: React.FC = () => {
                 className="flex gap-4 overflow-x-auto no-scrollbar scroll-smooth px-10 py-4 scrollbar-thin"
               >
                 {packages.map((pkg, index) => {
-                  const basePrice = region === "nigeria" ? 73600 : 65;
-                  const promoPrice = region === "nigeria" ? 56000 : 40;
-
-                  const isPromo =
-                    region === "nigeria" ? pkg.count >= 3 : pkg.count >= 15;
-
-                  const originalTotal = basePrice * pkg.count;
-
-                  const finalTotal = isPromo
-                    ? promoPrice * pkg.count
-                    : originalTotal;
                   return (
                     <div
                       key={index}
@@ -472,16 +470,14 @@ const Home: React.FC = () => {
                         {pkg.count} {pkg.count === 1 ? "Pack" : "Packs"}
                       </p>
                       <div className="mt-3 flex flex-col gap-1">
-                        {isPromo && (
+                        {pkg.discount && (
                           <span className="text-sm text-neutral-soft line-through">
-                            {formatPrice(originalTotal)}
+                            {formatPrice(pkg.discount)}
                           </span>
                         )}
 
                         <span className="text-xl font-bold text-neutral-dark">
-                          {finalTotal === 168000
-                            ? formatPrice(200000)
-                            : formatPrice(finalTotal)}
+                          {formatPrice(pkg.price)}
                         </span>
                       </div>
 
