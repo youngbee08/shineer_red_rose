@@ -1,6 +1,5 @@
-import { IoClose } from "react-icons/io5";
 import { motion, AnimatePresence } from "framer-motion";
-import React, { useEffect, useState } from "react";
+import React, {  useState } from "react";
 import assets from "../assets/assets";
 import { FaArrowRight } from "react-icons/fa";
 import { FaCartShopping } from "react-icons/fa6";
@@ -41,10 +40,10 @@ const Home: React.FC = () => {
     : "nigeria";
 
   const [region, setRegion] = useState<"nigeria" | "usa">(defaultRegion);
-  const [showFlyerModal, setShowFlyerModal] = useState(false);
-  const [flyerRegion, setFlyerRegion] = useState<"nigeria" | "usa">(
-    defaultRegion,
-  );
+  // const [showFlyerModal, setShowFlyerModal] = useState(false);
+  // const [flyerRegion, setFlyerRegion] = useState<"nigeria" | "usa">(
+  //   defaultRegion,
+  // );
   const handleViewMore = () => {
     setVisibleIng((prev) => prev + 3);
   };
@@ -327,14 +326,14 @@ const Home: React.FC = () => {
     return `$${value}`;
   };
 
-  useEffect(() => {
-    const hasSeen = sessionStorage.getItem("seenFlyer");
+  // useEffect(() => {
+  //   const hasSeen = sessionStorage.getItem("seenFlyer");
 
-    if (!hasSeen) {
-      setShowFlyerModal(true);
-      sessionStorage.setItem("seenFlyer", "true");
-    }
-  }, []);
+  //   if (!hasSeen) {
+  //     setShowFlyerModal(true);
+  //     sessionStorage.setItem("seenFlyer", "true");
+  //   }
+  // }, []);
 
   return (
     <>
@@ -754,7 +753,7 @@ const Home: React.FC = () => {
         onClose={() => setReviewAttachement("")}
         allowDownload
       />
-      <AnimatePresence>
+      {/* <AnimatePresence>
         {showFlyerModal && (
           <motion.div
             className="fixed inset-0 z-50 bg-black/60 flex items-center justify-center px-4"
@@ -827,7 +826,7 @@ const Home: React.FC = () => {
             </motion.div>
           </motion.div>
         )}
-      </AnimatePresence>
+      </AnimatePresence> */}
     </>
   );
 };
