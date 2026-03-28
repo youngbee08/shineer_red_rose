@@ -139,7 +139,6 @@ const PurchasePage: React.FC = () => {
   return (
     <div className="flex flex-col gap-10 lg:gap-14 pb-20 bg-neutral-50/50 min-h-screen">
       
-      {/* Hero Section */}
       <section className="relative overflow-hidden bg-linear-to-br from-primary to-primary/80 flex items-center justify-center py-16 text-center lg:py-24 shadow-inner">
         <div className="relative z-10 flex max-w-3xl flex-col items-center gap-4 px-6 md:gap-5">
           <h1 className="font-display text-4xl font-extrabold text-white sm:text-5xl lg:text-6xl drop-shadow-md tracking-tight">
@@ -153,11 +152,9 @@ const PurchasePage: React.FC = () => {
 
       <div className="app-container w-full max-w-3xl flex flex-col gap-8">
         
-        {/* Product Review Card */}
         <div className="rounded-xl border border-primary/10 bg-white p-6 sm:p-8 shadow-xl shadow-primary/5 transition-all">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between border-b border-primary/10 pb-5 mb-5 gap-4">
             <h2 className="text-xl font-bold text-neutral-dark inline-flex items-center gap-3">
-              <span className="h-3 w-3 rounded-xl bg-primary"></span>
               {productName}
             </h2>
             <div className="inline-flex rounded-xl bg-neutral-100 p-1.5 self-start sm:self-auto">

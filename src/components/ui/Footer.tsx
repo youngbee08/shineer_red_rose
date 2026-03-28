@@ -5,8 +5,8 @@ const Footer = () => {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="mt-16 lg:mt-20">
-      <section className="mt-10 border-t border-secondary-dark/60 bg-white">
+    <footer className="">
+      <section className="mt-5 border-t border-secondary-dark/60 bg-white">
         <div className="app-container py-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6">
           <div className="flex flex-col gap-2">
             <p className="text-xs font-semibold text-neutral-soft">
@@ -51,13 +51,6 @@ const Footer = () => {
               className="hover:text-tetiary transition"
             >
               Built by Zenith Dev™
-            </a>
-
-            <a
-              href="mailto:Sunshineer23@gmail.com"
-              className="hover:text-tetiary transition lowercase"
-            >
-              Sunshineer23@gmail.com
             </a>
 
             <Link to="/contact" className="hover:text-tetiary transition">

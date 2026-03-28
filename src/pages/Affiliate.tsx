@@ -57,15 +57,16 @@ const Affiliate: React.FC = () => {
       <section className="relative overflow-hidden bg-linear-to-br from-primary to-primary/80 flex items-center justify-center py-16 text-center lg:py-24 shadow-inner">
         <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-xl blur-3xl translate-x-1/2 -translate-y-1/2" />
         <div className="absolute bottom-0 left-0 w-64 h-64 bg-black/10 rounded-xl blur-3xl -translate-x-1/2 translate-y-1/2" />
-        
+
         <div className="relative z-10 flex max-w-3xl flex-col items-center gap-4 px-6 md:gap-5">
           <h1 className="font-display text-4xl font-extrabold text-white sm:text-5xl lg:text-6xl drop-shadow-md tracking-tight">
             The RedRose Opportunity
           </h1>
 
           <p className="max-w-2xl text-sm leading-relaxed text-white/90 sm:text-base lg:text-lg font-medium drop-shadow-sm">
-            Understand the affiliate opportunity at a glance. Discover what you gain, how
-            to launch your journey, and the exact steps to begin earning today.
+            Understand the affiliate opportunity at a glance. Discover what you
+            gain, how to launch your journey, and the exact steps to begin
+            earning today.
           </p>
         </div>
       </section>
@@ -77,8 +78,9 @@ const Affiliate: React.FC = () => {
               What You Are Joining
             </h2>
             <p className="text-left text-sm leading-7 text-neutral-soft">
-              Start here to completely grasp the opportunity before choosing your
-              placement or analyzing the comprehensive compensation details.
+              Start here to completely grasp the opportunity before choosing
+              your placement or analyzing the comprehensive compensation
+              details.
             </p>
           </div>
 
@@ -124,8 +126,8 @@ const Affiliate: React.FC = () => {
               Why This Model Excels
             </h2>
             <p className="text-left text-sm leading-7 text-neutral-soft">
-              Inherent structural benefits that ensure it remains incredibly simple 
-              to comprehend, embrace, and confidently promote.
+              Inherent structural benefits that ensure it remains incredibly
+              simple to comprehend, embrace, and confidently promote.
             </p>
           </div>
           <div className="flex md:flex-row flex-col gap-4 overflow-x-auto scroll-smooth py-2 scrollbar-thin">
@@ -146,11 +148,12 @@ const Affiliate: React.FC = () => {
               Take Your Position
             </h2>
             <p className="text-left text-sm leading-7 text-neutral-soft">
-              Determine the entry path that meticulously aligns with the specific growth strategy you
-              envision right from the starting line.
+              Determine the entry path that meticulously aligns with the
+              specific growth strategy you envision right from the starting
+              line.
             </p>
           </div>
-          
+
           <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
             <LegCard
               title="Left Leg"
@@ -182,11 +185,11 @@ const Affiliate: React.FC = () => {
               Essential Explanations
             </h2>
             <p className="text-left text-sm leading-7 text-neutral-soft">
-              Resolving the customary queries upfront guarantees every aspiring affiliate proceeds with 
-              unwavering confidence.
+              Resolving the customary queries upfront guarantees every aspiring
+              affiliate proceeds with unwavering confidence.
             </p>
           </div>
-          <div className="w-full max-w-4xl flex flex-col gap-4 sm:gap-5 mt-2">
+          <div className="w-full flex flex-col gap-4 sm:gap-5 mt-2">
             {faqs.map((faq) => (
               <FaqCard
                 key={faq.question}

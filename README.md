@@ -1,16 +1,16 @@
-# Red Rose by Olaw: Premium Wellness & Affiliate Platform
+# Red Rose by shineer: Premium Wellness & Affiliate Platform
 
-This project powers the official online presence for "Red Rose by Olaw," a premium wellness product, offering detailed information about its benefits, ingredients, and a straightforward purchasing process. It also serves as a comprehensive platform for individuals interested in joining the Red Rose affiliate network, outlining the opportunity, compensation structure, and enrollment paths.
+This project powers the official online presence for "Red Rose by shineer," a premium wellness product, offering detailed information about its benefits, ingredients, and a straightforward purchasing process. It also serves as a comprehensive platform for individuals interested in joining the Red Rose affiliate network, outlining the opportunity, compensation structure, and enrollment paths.
 
 ## Features
 
--   **Comprehensive Product Information**: Detailed sections on the Double Red Rose product, including its benefits, active ingredients, and recommended usage.
--   **Seamless Affiliate Onboarding**: Dedicated pages explaining the affiliate opportunity, its advantages, placement options (Left Leg, Right Leg), and access to compensation guides.
--   **Streamlined Purchase Process**: An intuitive flow for selecting product quantity, providing shipping details, viewing bank transfer information (Zelle), and submitting payment receipts via WhatsApp.
--   **Direct WhatsApp Support**: Integrated contact and payment verification processes leveraging WhatsApp for efficient communication and customer service.
--   **Engaging User Experience**: Dynamic and responsive interface built with modern web technologies, featuring smooth animations and clear navigation.
--   **Customer Testimonials & Attachments**: Displays real customer feedback with ratings and includes an option to view supporting attachments.
--   **Error Handling and Notifications**: Utilizes `sonner` for user-friendly toast notifications for form submissions and critical actions.
+- **Comprehensive Product Information**: Detailed sections on the Double Red Rose product, including its benefits, active ingredients, and recommended usage.
+- **Seamless Affiliate Onboarding**: Dedicated pages explaining the affiliate opportunity, its advantages, placement options (Left Leg, Right Leg), and access to compensation guides.
+- **Streamlined Purchase Process**: An intuitive flow for selecting product quantity, providing shipping details, viewing bank transfer information (Zelle), and submitting payment receipts via WhatsApp.
+- **Direct WhatsApp Support**: Integrated contact and payment verification processes leveraging WhatsApp for efficient communication and customer service.
+- **Engaging User Experience**: Dynamic and responsive interface built with modern web technologies, featuring smooth animations and clear navigation.
+- **Customer Testimonials & Attachments**: Displays real customer feedback with ratings and includes an option to view supporting attachments.
+- **Error Handling and Notifications**: Utilizes `sonner` for user-friendly toast notifications for form submissions and critical actions.
 
 ## Usage
 
@@ -37,7 +37,9 @@ This platform provides two primary user flows: purchasing the Double Red Rose pr
 5.  **Contact for Support**: If you have further questions, use the "Contact" page to send a message via WhatsApp for assistance.
 
 ## Author Info
+
 **Zenith Dev**
+
 - Email: [hello@zenithdevtech.name.ng](mailto:hello@zenithdevtech.name.ng)
 - Website: [Zenith Dev Tech](https://zenithdevtech.name.ng)
 - GitHub: [youngbeeh08](https://github.com/youngbeeh08)

@@ -19,7 +19,7 @@ const BenefitCard: React.FC<BenefitCardProps> = ({ name, icon, detail}) => {
       </div>
 
       <div className="relative z-10 flex flex-col gap-2">
-        <h3 className="font-display text-4xl md:text-5xl font-extrabold text-primary tracking-tight leading-tight">
+        <h3 className="font-display text-4xl md:text-5xl font-extrabold text-primary tracking-tight leading-tight wrap-break-word hyphens-manual">
           {name}
         </h3>
         

@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.doubleredrose-olaw.info/sitemap.xml
+Sitemap: https://www.doubleredrose-shineer.info/sitemap.xml

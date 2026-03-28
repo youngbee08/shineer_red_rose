@@ -2,8 +2,8 @@
   "redirects": [
     {
       "source": "/(.*)",
-      "has": [{ "type": "host", "value": "doubleredrose-olaw.info" }],
-      "destination": "https://www.doubleredrose-olaw.info/$1",
+      "has": [{ "type": "host", "value": "doubleredrose-shineer.info" }],
+      "destination": "https://www.doubleredrose-shineer.info/$1",
       "permanent": true
     }
   ],

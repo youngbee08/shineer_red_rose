@@ -34,7 +34,9 @@ const Header = () => {
   }, []);
 
   return (
-    <header className={`sticky top-0 z-50 transition-all duration-300 ${scrolled ? 'bg-white/85 backdrop-blur-md shadow-md shadow-primary/5 py-1' : 'bg-white py-2'}`}>
+    <header
+      className={`sticky top-0 z-50 transition-all duration-300 ${scrolled ? "bg-white/85 backdrop-blur-md shadow-md shadow-primary/5 py-1" : "bg-white py-2"}`}
+    >
       <motion.div
         className="w-full"
         initial={{ y: -12, opacity: 0 }}
@@ -42,8 +44,6 @@ const Header = () => {
         transition={{ duration: 0.4, ease: "easeOut" }}
       >
         <nav className="app-container flex items-center justify-between lg:h-16 h-20">
-          
-          {/* LOGO AREA */}
           <div className="flex items-center gap-3 lg:gap-4">
             <Link to="/" className="flex flex-col leading-tight group">
               <span className="font-display text-lg font-extrabold lg:text-xl tracking-tight text-neutral-dark group-hover:text-primary transition-colors">
@@ -55,7 +55,6 @@ const Header = () => {
             </Link>
           </div>
 
-          {/* DESKTOP NAV */}
           <div className="hidden lg:flex flex-1 items-center justify-center gap-2">
             {navitems.map((item) => {
               const active = location.pathname === item.path;
@@ -88,7 +87,6 @@ const Header = () => {
             </motion.div>
           </div>
 
-          {/* MOBILE TOGGLE */}
           <motion.button
             onClick={() => setOpen(true)}
             className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/5 transition hover:bg-primary/10 lg:hidden"
@@ -100,7 +98,6 @@ const Header = () => {
         </nav>
       </motion.div>
 
-      {/* MOBILE MENU FULLSCREEN OVERLAY */}
       <AnimatePresence>
         {open && (
           <motion.div
@@ -122,11 +119,10 @@ const Header = () => {
                 ease: [0.25, 1, 0.3, 1],
               }}
             >
-              {/* Header inside mobile menu */}
               <div className="flex items-center justify-between px-6 py-5 bg-neutral-50 border-b border-primary/5">
                 <div className="flex flex-col leading-tight">
                   <span className="font-display text-xl font-extrabold text-neutral-dark tracking-tight">
-                     Red<span className="text-primary">Rose</span>
+                    Red<span className="text-primary">Rose</span> by shineer
                   </span>
                   <span className="text-[10px] text-neutral-soft font-medium mt-1">
                     Affiliate business owner of Affluence Global
@@ -143,7 +139,6 @@ const Header = () => {
                 </motion.button>
               </div>
 
-              {/* Nav items */}
               <div className="px-6 py-8 flex flex-col gap-3">
                 {navitems.map((item, i) => {
                   const active = location.pathname === item.path;
@@ -170,7 +165,6 @@ const Header = () => {
                 })}
               </div>
 
-              {/* Mobile Actions */}
               <div className="p-6 bg-neutral-50 flex flex-col gap-3 border-t border-primary/5">
                 <Link
                   to="/contact"

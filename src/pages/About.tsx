@@ -74,16 +74,16 @@ const About: React.FC = () => {
       <section className="relative overflow-hidden bg-linear-to-br from-primary to-primary/85 flex items-center justify-center py-16 text-center lg:py-24 shadow-inner">
         <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-xl blur-3xl translate-x-1/3 -translate-y-1/3 pointer-events-none" />
         <div className="absolute bottom-0 left-0 w-80 h-80 bg-black/10 rounded-xl blur-3xl -translate-x-1/3 translate-y-1/3 pointer-events-none" />
-        
+
         <div className="relative z-10 flex max-w-3xl flex-col items-center gap-4 px-6 md:gap-5">
           <h1 className="font-display text-4xl font-extrabold text-white sm:text-5xl lg:text-6xl drop-shadow-sm tracking-tight">
             About Double RedRose
           </h1>
 
           <p className="max-w-2xl text-sm leading-relaxed text-white/90 sm:text-base lg:text-lg font-medium drop-shadow-sm">
-            Double Red Rose is a premium wellness supplement precisely crafted to support your 
-            body at the cellular level, helping minimize oxidative stress and
-            ignite natural vitality.
+            Double Red Rose is a premium wellness supplement precisely crafted
+            to support your body at the cellular level, helping minimize
+            oxidative stress and ignite natural vitality.
           </p>
         </div>
       </section>
@@ -95,7 +95,8 @@ const About: React.FC = () => {
               What The Formula Supports
             </h2>
             <p className="text-left text-sm leading-7 text-neutral-soft">
-              Designed to nourish your body from within through targeted cellular wellness.
+              Designed to nourish your body from within through targeted
+              cellular wellness.
             </p>
           </div>
 
@@ -125,7 +126,8 @@ const About: React.FC = () => {
               Why The Experience Is Different
             </h2>
             <p className="text-left text-sm leading-7 text-neutral-soft">
-              The foundational principles that heavily dictate everywhere we source and every product we finalize.
+              The foundational principles that heavily dictate everywhere we
+              source and every product we finalize.
             </p>
           </div>
           <div className="flex md:flex-row flex-col gap-4 overflow-x-auto scroll-smooth py-2 scrollbar-thin">
@@ -146,10 +148,11 @@ const About: React.FC = () => {
               Questions People Ask
             </h2>
             <p className="text-left text-sm leading-7 text-neutral-soft">
-              Get quick precise answers to the most common questions regarding product integration and getting everything started.
+              Get quick precise answers to the most common questions regarding
+              product integration and getting everything started.
             </p>
           </div>
-          <div className="w-full max-w-4xl flex flex-col gap-4 sm:gap-5 mt-2">
+          <div className="w-full  flex flex-col gap-4 sm:gap-5 mt-2">
             {faqs.map((faq) => (
               <FaqCard
                 key={faq.question}

@@ -331,11 +331,12 @@ const Home: React.FC = () => {
       <div className="flex flex-col gap-10 lg:gap-14">
         <section
           className="relative overflow-hidden bg-[length:cover] bg-center bg-[image:var(--bg-img)] md:bg-none"
-          style={{
-            "--bg-img": `linear-gradient(90deg, rgba(120, 0, 10, 0.305) 0%, rgba(120, 0, 10, 0.258) 38%, rgba(120, 0, 10, 0.203) 100%), url(${assets.landing222})`,
-          } as React.CSSProperties}
+          style={
+            {
+              "--bg-img": `linear-gradient(90deg, rgba(120, 0, 10, 0.305) 0%, rgba(120, 0, 10, 0.258) 38%, rgba(120, 0, 10, 0.203) 100%), url(${assets.landing222})`,
+            } as React.CSSProperties
+          }
         >
-
           <div className="app-container relative grid min-h-140 grid-cols-1 items-center pb-20 pt-8 sm:pt-10 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,0.8fr)] lg:pb-32 lg:pt-12 z-20">
             <div className="flex max-w-2xl flex-col gap-4 sm:gap-5">
               <h1 className="font-display text-3xl font-semibold leading-[1.02] text-primary sm:text-5xl lg:text-6xl">
@@ -343,10 +344,10 @@ const Home: React.FC = () => {
                 Limitless Energy
               </h1>
 
-              <p className="max-w-xl text-sm leading-7 text-neutral-dark sm:text-base">
+              <p className="max-w-xl text-sm leading-7 text-neutral-soft sm:text-base">
                 Explore an authentic red botanical infusion designed to elevate
-                your antioxidant defenses, fuel your everyday drive, and inspire a 
-                bold new chapter of healthy living.
+                your antioxidant defenses, fuel your everyday drive, and inspire
+                a bold new chapter of healthy living.
               </p>
 
               <div className="flex flex-col gap-3 pt-2 sm:flex-row">
@@ -370,7 +371,11 @@ const Home: React.FC = () => {
           </div>
 
           <div className="absolute sm:bottom-0 right-0 overflow-hidden leading-none z-10 h-full">
-            <img src={assets.landing222} alt="" className="h-full md:object-cover object-contain" />
+            <img
+              src={assets.landing222}
+              alt=""
+              className="h-full md:object-cover object-contain"
+            />
           </div>
         </section>
 
@@ -382,27 +387,30 @@ const Home: React.FC = () => {
                   Select A Bundle
                 </h2>
                 <p className="text-sm leading-7 text-neutral-soft">
-                  Pick an introductory plan and embark on your ultimate wellness transformation.
+                  Pick an introductory plan and embark on your ultimate wellness
+                  transformation.
                 </p>
               </div>
 
               <div className="flex justify-center md:justify-end h-max gap-3">
                 <button
                   onClick={() => setRegion("nigeria")}
-                  className={`px-5 py-2 rounded-xl text-sm font-semibold transition ${region === "nigeria"
-                    ? "bg-primary text-white"
-                    : "bg-secondary-dark/10 text-neutral-dark"
-                    }`}
+                  className={`px-5 py-2 rounded-xl text-sm font-semibold transition ${
+                    region === "nigeria"
+                      ? "bg-primary text-white"
+                      : "bg-secondary-dark/10 text-neutral-dark"
+                  }`}
                 >
                   Nigeria
                 </button>
 
                 <button
                   onClick={() => setRegion("usa")}
-                  className={`px-5 py-2 rounded-xl text-sm font-semibold transition ${region === "usa"
-                    ? "bg-primary text-white"
-                    : "bg-secondary-dark/10 text-neutral-dark"
-                    }`}
+                  className={`px-5 py-2 rounded-xl text-sm font-semibold transition ${
+                    region === "usa"
+                      ? "bg-primary text-white"
+                      : "bg-secondary-dark/10 text-neutral-dark"
+                  }`}
                 >
                   USA
                 </button>
@@ -410,7 +418,6 @@ const Home: React.FC = () => {
             </div>
 
             <div className="relative w-full">
-
               <div
                 ref={scrollRef}
                 className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 overflow-x-auto scroll-smooth py-4 scrollbar-thin"
@@ -454,7 +461,6 @@ const Home: React.FC = () => {
                   );
                 })}
               </div>
-
             </div>
           </section>
 
@@ -466,7 +472,8 @@ const Home: React.FC = () => {
                 </h2>
               </div>
               <p className="text-left text-sm leading-7 text-neutral-soft">
-                Discover our masterfully balanced botanical ingredients and how they contribute towards your total wellbeing.
+                Discover our masterfully balanced botanical ingredients and how
+                they contribute towards your total wellbeing.
               </p>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-5 lg:gap-6">
@@ -499,11 +506,14 @@ const Home: React.FC = () => {
                 </h2>
               </div>
               <p className="text-sm leading-7 text-neutral-soft">
-                Uncover the primary advantages our daily formula brings to your overarching health goals.
+                Uncover the primary advantages our daily formula brings to your
+                overarching health goals.
               </p>
             </div>
-            <div ref={scrollRef}
-              className="flex md:flex-row flex-col gap-4 overflow-x-auto scroll-smooth p-4 scrollbar-thin ">
+            <div
+              ref={scrollRef}
+              className="flex md:flex-row flex-col gap-4 overflow-x-auto scroll-smooth p-4 scrollbar-thin "
+            >
               {benefits.map((benefit, index) => (
                 <BenefitCard
                   name={benefit.name}
@@ -523,7 +533,8 @@ const Home: React.FC = () => {
                 </h2>
               </div>
               <p className="text-left text-sm leading-7 text-neutral-soft">
-                Learn how to seamlessly integrate our pouches into your everyday habits effortlessly.
+                Learn how to seamlessly integrate our pouches into your everyday
+                habits effortlessly.
               </p>
             </div>
             <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
@@ -546,7 +557,8 @@ const Home: React.FC = () => {
                 </h2>
               </div>
               <p className="text-left text-sm leading-7 text-neutral-soft">
-                Find out why our community relies on our transparent quality and unparalleled partner support.
+                Find out why our community relies on our transparent quality and
+                unparalleled partner support.
               </p>
             </div>
             <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
@@ -569,30 +581,63 @@ const Home: React.FC = () => {
                 </h2>
               </div>
               <p className="text-left text-sm leading-7 text-neutral-soft">
-                Trace the straightforward steps from your first order through to inspiring others around you.
+                Trace the straightforward steps from your first order through to
+                inspiring others around you.
               </p>
             </div>
             <div className="relative w-full max-w-[1000px] mx-auto mt-6 md:mt-10">
-              
-              {/* Dotted Arrows Container (desktop only) */}
               <div className="hidden lg:block absolute inset-0 pointer-events-none z-0">
-                {/* Arrow 1 (Arc Up) */}
-                <svg className="absolute top-[8%] left-[24%] w-[20%] h-[80px] overflow-visible" viewBox="0 0 100 40" preserveAspectRatio="none">
+                <svg
+                  className="absolute top-[8%] left-[24%] w-[20%] h-[80px] overflow-visible"
+                  viewBox="0 0 100 40"
+                  preserveAspectRatio="none"
+                >
                   <defs>
-                    <marker id="arrowhead1" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+                    <marker
+                      id="arrowhead1"
+                      markerWidth="6"
+                      markerHeight="6"
+                      refX="5"
+                      refY="3"
+                      orient="auto"
+                    >
                       <polygon points="0 0, 6 3, 0 6" fill="#333" />
                     </marker>
                   </defs>
-                  <path d="M 0,30 Q 50,-15 100,25" fill="transparent" stroke="#333" strokeWidth="1.5" strokeDasharray="4 4" markerEnd="url(#arrowhead1)" />
+                  <path
+                    d="M 0,30 Q 50,-15 100,25"
+                    fill="transparent"
+                    stroke="#333"
+                    strokeWidth="1.5"
+                    strokeDasharray="4 4"
+                    markerEnd="url(#arrowhead1)"
+                  />
                 </svg>
-                {/* Arrow 2 (Arc Down) */}
-                <svg className="absolute top-[18%] left-[56%] w-[20%] h-[80px] overflow-visible" viewBox="0 0 100 40" preserveAspectRatio="none">
+                <svg
+                  className="absolute top-[18%] left-[56%] w-[20%] h-[80px] overflow-visible"
+                  viewBox="0 0 100 40"
+                  preserveAspectRatio="none"
+                >
                   <defs>
-                    <marker id="arrowhead2" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+                    <marker
+                      id="arrowhead2"
+                      markerWidth="6"
+                      markerHeight="6"
+                      refX="5"
+                      refY="3"
+                      orient="auto"
+                    >
                       <polygon points="0 0, 6 3, 0 6" fill="#333" />
                     </marker>
                   </defs>
-                  <path d="M 0,10 Q 50,55 100,15" fill="transparent" stroke="#333" strokeWidth="1.5" strokeDasharray="4 4" markerEnd="url(#arrowhead2)" />
+                  <path
+                    d="M 0,10 Q 50,55 100,15"
+                    fill="transparent"
+                    stroke="#333"
+                    strokeWidth="1.5"
+                    strokeDasharray="4 4"
+                    markerEnd="url(#arrowhead2)"
+                  />
                 </svg>
               </div>
 
@@ -618,7 +663,8 @@ const Home: React.FC = () => {
                 </h2>
               </div>
               <p className="text-left text-sm leading-7 text-neutral-soft">
-                Browse through authentic journeys experienced by those who have committed to our daily health regimen.
+                Browse through authentic journeys experienced by those who have
+                committed to our daily health regimen.
               </p>
             </div>
             <div className="relative overflow-hidden py-2">
@@ -637,7 +683,6 @@ const Home: React.FC = () => {
                       whileHover={{ y: -5 }}
                       className="h-full relative overflow-hidden rounded-xl border border-primary/10 bg-white p-6 md:p-8 shadow-xl shadow-primary/5 transition-all duration-300 hover:shadow-2xl hover:shadow-primary/10"
                     >
-                      {/* HUGE WATERMARK QUOTE */}
                       <div className="absolute -top-4 -right-2 text-[120px] text-primary/5 font-serif select-none leading-none">
                         “
                       </div>
@@ -721,7 +766,8 @@ const Home: React.FC = () => {
                 </h2>
               </div>
               <p className="text-left text-sm leading-7 text-neutral-soft">
-                Explore swift responses addressing the most common curiosities about our system, plans, and formulas.
+                Explore swift responses addressing the most common curiosities
+                about our system, plans, and formulas.
               </p>
             </div>
             <div className="w-full flex flex-col gap-4 sm:gap-5 mt-2">
