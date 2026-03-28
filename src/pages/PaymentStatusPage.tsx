@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import type { PendingOrder } from "../lib/interfaces";
 import { convertNairaToDollar } from "../utilities/formatterUtility";
 
-const WHATSAPP_NUMBER = "+13175313547";
+const WHATSAPP_NUMBER = "+16822528501";
 
 const naira = (n: number) =>
   new Intl.NumberFormat("en-NG", { style: "currency", currency: "NGN" }).format(

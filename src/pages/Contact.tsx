@@ -3,7 +3,7 @@ import { toast } from "sonner";
 import { FaPhoneAlt, FaWhatsapp } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
-const WHATSAPP_NUMBER = "13175313547";
+const WHATSAPP_NUMBER = "16822528501";
 
 const Contact: React.FC = () => {
   const [form, setForm] = useState({

@@ -9,7 +9,7 @@ import {
   getAltPrice,
 } from "../utilities/formatterUtility";
 
-const WHATSAPP_NUMBER = "13175313547";
+const WHATSAPP_NUMBER = "16822528501";
 
 const naira = (n: number) =>
   new Intl.NumberFormat("en-NG", { style: "currency", currency: "NGN" }).format(
@@ -138,20 +138,19 @@ const PurchasePage: React.FC = () => {
 
   return (
     <div className="flex flex-col gap-10 lg:gap-14 pb-20 bg-neutral-50/50 min-h-screen">
-      
       <section className="relative overflow-hidden bg-linear-to-br from-primary to-primary/80 flex items-center justify-center py-16 text-center lg:py-24 shadow-inner">
         <div className="relative z-10 flex max-w-3xl flex-col items-center gap-4 px-6 md:gap-5">
           <h1 className="font-display text-4xl font-extrabold text-white sm:text-5xl lg:text-6xl drop-shadow-md tracking-tight">
             Secure Checkout
           </h1>
           <p className="max-w-xl text-sm leading-relaxed text-white/90 sm:text-base lg:text-lg font-medium drop-shadow-sm">
-            Confirm your package details, complete your payment securely, and submit your receipt for rapid verification.
+            Confirm your package details, complete your payment securely, and
+            submit your receipt for rapid verification.
           </p>
         </div>
       </section>
 
       <div className="app-container w-full max-w-3xl flex flex-col gap-8">
-        
         <div className="rounded-xl border border-primary/10 bg-white p-6 sm:p-8 shadow-xl shadow-primary/5 transition-all">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between border-b border-primary/10 pb-5 mb-5 gap-4">
             <h2 className="text-xl font-bold text-neutral-dark inline-flex items-center gap-3">
@@ -162,7 +161,9 @@ const PurchasePage: React.FC = () => {
                 type="button"
                 onClick={() => setShowUSD(true)}
                 className={`rounded-xl px-5 py-2 text-xs font-bold tracking-widest uppercase transition-all ${
-                  showUSD ? "bg-primary text-white shadow-md" : "text-neutral-500 hover:bg-white"
+                  showUSD
+                    ? "bg-primary text-white shadow-md"
+                    : "text-neutral-500 hover:bg-white"
                 }`}
               >
                 USD
@@ -171,24 +172,32 @@ const PurchasePage: React.FC = () => {
                 type="button"
                 onClick={() => setShowUSD(false)}
                 className={`rounded-xl px-5 py-2 text-xs font-bold tracking-widest uppercase transition-all ${
-                  !showUSD ? "bg-primary text-white shadow-md" : "text-neutral-500 hover:bg-white"
+                  !showUSD
+                    ? "bg-primary text-white shadow-md"
+                    : "text-neutral-500 hover:bg-white"
                 }`}
               >
                 NGN
               </button>
             </div>
           </div>
-          
+
           <div className="grid grid-cols-2 gap-6 items-end">
             <div className="flex flex-col gap-1">
-              <p className="text-[11px] font-bold text-neutral-400 uppercase tracking-widest">Base Price</p>
+              <p className="text-[11px] font-bold text-neutral-400 uppercase tracking-widest">
+                Base Price
+              </p>
               <p className="text-xl md:text-2xl font-black text-neutral-800 tracking-tight">
-                {showUSD ? `$${convertNairaToDollar(unitPrice)}` : naira(unitPrice)}
+                {showUSD
+                  ? `$${convertNairaToDollar(unitPrice)}`
+                  : naira(unitPrice)}
               </p>
             </div>
-            
+
             <div className="flex flex-col items-end gap-1">
-              <p className="text-[11px] font-bold text-neutral-400 uppercase tracking-widest">Quantity</p>
+              <p className="text-[11px] font-bold text-neutral-400 uppercase tracking-widest">
+                Quantity
+              </p>
               <div className="inline-flex items-center bg-neutral-50 rounded-xl border border-primary/10">
                 <button
                   onClick={() => setQty((q) => Math.max(1, q - 1))}
@@ -196,7 +205,9 @@ const PurchasePage: React.FC = () => {
                 >
                   −
                 </button>
-                <div className="w-10 text-center font-bold text-neutral-800">{qty}</div>
+                <div className="w-10 text-center font-bold text-neutral-800">
+                  {qty}
+                </div>
                 <button
                   onClick={() => setQty((q) => q + 1)}
                   className="h-11 w-11 flex items-center justify-center text-xl text-neutral-500 hover:text-primary hover:bg-neutral-100 transition rounded-r-xl"
@@ -244,19 +255,31 @@ const PurchasePage: React.FC = () => {
           <h2 className="text-lg font-bold text-neutral-dark mb-5 border-b border-primary/10 pb-4">
             Transfer Instructions
           </h2>
-          
+
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-5">
             <div className="rounded-xl bg-neutral-50 p-5 border border-primary/5">
-              <p className="text-[11px] font-bold uppercase text-neutral-400 tracking-widest">Bank Name</p>
-              <p className="text-sm md:text-base font-bold text-neutral-800 mt-2">{BANK_DETAILS.bankName}</p>
+              <p className="text-[11px] font-bold uppercase text-neutral-400 tracking-widest">
+                Bank Name
+              </p>
+              <p className="text-sm md:text-base font-bold text-neutral-800 mt-2">
+                {BANK_DETAILS.bankName}
+              </p>
             </div>
             <div className="rounded-xl bg-neutral-50 p-5 border border-primary/5">
-              <p className="text-[11px] font-bold uppercase text-neutral-400 tracking-widest">Branch</p>
-              <p className="text-sm md:text-base font-bold text-neutral-800 mt-2">{BANK_DETAILS.branch}</p>
+              <p className="text-[11px] font-bold uppercase text-neutral-400 tracking-widest">
+                Branch
+              </p>
+              <p className="text-sm md:text-base font-bold text-neutral-800 mt-2">
+                {BANK_DETAILS.branch}
+              </p>
             </div>
             <div className="rounded-xl bg-neutral-50 p-5 border border-primary/5 sm:col-span-2">
-              <p className="text-[11px] font-bold uppercase text-neutral-400 tracking-widest">Account Name</p>
-              <p className="text-sm md:text-base font-bold text-neutral-800 mt-2">{BANK_DETAILS.accountName}</p>
+              <p className="text-[11px] font-bold uppercase text-neutral-400 tracking-widest">
+                Account Name
+              </p>
+              <p className="text-sm md:text-base font-bold text-neutral-800 mt-2">
+                {BANK_DETAILS.accountName}
+              </p>
             </div>
           </div>
 
@@ -277,7 +300,7 @@ const PurchasePage: React.FC = () => {
             </button>
           </div>
           <p className="text-center text-[13px] text-neutral-500 font-medium mt-5">
-             Ensure you include your full name within the transfer description.
+            Ensure you include your full name within the transfer description.
           </p>
         </div>
 
@@ -288,12 +311,14 @@ const PurchasePage: React.FC = () => {
               Total Amount
             </p>
             <p className="text-2xl md:text-4xl font-black text-primary tracking-tight">
-              {showUSD ? `$${getAltPrice(convertNairaToDollar(amount))}` : naira(getAltPrice(amount))}
+              {showUSD
+                ? `$${getAltPrice(convertNairaToDollar(amount))}`
+                : naira(getAltPrice(amount))}
             </p>
           </div>
 
           <div className="flex flex-col gap-4">
-             <input
+            <input
               ref={fileRef}
               type="file"
               accept="image/*,application/pdf"
@@ -303,28 +328,31 @@ const PurchasePage: React.FC = () => {
                 setReceiptFile(file);
                 if (file) toast.success(`Receipt selected: ${file.name}`);
               }}
-             />
-             <button
-               type="button"
-               onClick={handlePickReceipt}
-               className="w-full rounded-xl border border-dashed border-primary/40 bg-neutral-50 px-5 py-4 text-sm font-bold tracking-wide text-primary hover:bg-primary/5 transition"
-             >
-               {receiptFile ? "Change Receipt Attachment" : "Attach Proof of Payment"}
-             </button>
+            />
+            <button
+              type="button"
+              onClick={handlePickReceipt}
+              className="w-full rounded-xl border border-dashed border-primary/40 bg-neutral-50 px-5 py-4 text-sm font-bold tracking-wide text-primary hover:bg-primary/5 transition"
+            >
+              {receiptFile
+                ? "Change Receipt Attachment"
+                : "Attach Proof of Payment"}
+            </button>
 
-             <button
+            <button
               type="button"
               onClick={handleSubmit}
               className="w-full rounded-xl bg-primary px-5 py-5 text-sm uppercase tracking-[0.2em] font-black text-white hover:bg-primary/90 transition shadow-lg shadow-primary/20"
-             >
+            >
               Confirm & Continue
-             </button>
+            </button>
           </div>
           <p className="text-center text-[12px] text-neutral-400 font-medium mt-5 leading-relaxed">
-             Post-submission, your order status remains <span className="font-bold text-neutral-500">Pending</span> until verification completes successfully on WhatsApp.
+            Post-submission, your order status remains{" "}
+            <span className="font-bold text-neutral-500">Pending</span> until
+            verification completes successfully on WhatsApp.
           </p>
         </div>
-
       </div>
     </div>
   );

@@ -78,7 +78,7 @@ const Header = () => {
           <div className="hidden lg:flex justify-end ml-4">
             <motion.div whileHover={{ y: -2 }} whileTap={{ scale: 0.95 }}>
               <Link
-                to="tel:+13175313547"
+                to="tel:+16822528501"
                 className="flex items-center gap-2 rounded-xl shadow-lg shadow-primary/20 bg-primary px-7 py-3 text-sm font-bold text-white transition-all hover:shadow-xl hover:shadow-primary/30 hover:bg-primary/90"
               >
                 <FaPhoneAlt className="text-xs" />
@@ -176,7 +176,7 @@ const Header = () => {
                 </Link>
 
                 <a
-                  href="https://wa.me/13175313547?text=Hi%20there,%20I'd%20like%20to%20learn%20more."
+                  href="https://wa.me/16822528501?text=Hi%20there,%20I'd%20like%20to%20learn%20more."
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center justify-center gap-2 w-full rounded-xl bg-white border border-neutral-200 px-6 py-4 text-center text-base font-bold text-neutral-dark transition hover:bg-neutral-50 shadow-sm"
