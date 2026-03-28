@@ -23,6 +23,7 @@ import landscape from "./images/landscape.jpg";
 import landscape2 from "./images/landscape2.png";
 import usaFlyer from "./images/usaFlyer.jpeg";
 import nigeriaFlyer from "./images/nigeriaFlyer.png";
+import landing222 from "./images/landing222.png";
 
 const assets = {
   logo1,
@@ -50,5 +51,6 @@ const assets = {
   landscape2,
   usaFlyer,
   nigeriaFlyer,
+  landing222
 };
 export default assets;

@@ -7,8 +7,8 @@ const WhyChooseCard: React.FC<WhyChooseCardProps> = ({
   description,
 }) => {
   return (
-    <div className="group h-full rounded-3xl border border-secondary-dark/70 bg-white p-6 shadow-[0_18px_45px_-30px_rgba(15,14,20,0.12)] transition duration-300 hover:-translate-y-0.5">
-      <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-primary/10 bg-linear-to-br from-primary/12 to-white text-primary">
+    <div className="group h-full rounded-xl border border-secondary-dark/70 bg-white p-6 shadow-[0_18px_45px_-30px_rgba(15,14,20,0.12)] transition duration-300 hover:-translate-y-0.5">
+      <div className="flex h-12 w-12 items-center justify-center rounded-xl border border-primary/10 bg-linear-to-br from-primary/12 to-white text-primary">
         {icon}
       </div>
 

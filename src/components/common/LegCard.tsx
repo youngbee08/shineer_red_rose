@@ -12,7 +12,7 @@ const LegCard: React.FC<LegCardProps> = ({
   icon,
 }) => {
   return (
-    <div className="group h-full rounded-4xl border border-secondary-dark/70 bg-white p-5 shadow-[0_16px_34px_-28px_rgba(15,14,20,0.16)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_24px_44px_-30px_rgba(15,14,20,0.18)] sm:p-6">
+    <div className="group h-full rounded-xl border border-secondary-dark/70 bg-white p-5 shadow-[0_16px_34px_-28px_rgba(15,14,20,0.16)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_24px_44px_-30px_rgba(15,14,20,0.18)] sm:p-6">
       <div className="flex items-start justify-between gap-4">
         <div className="min-w-0">
           <h3 className="mt-3 font-display text-2xl font-bold leading-tight text-neutral-dark">
@@ -20,7 +20,7 @@ const LegCard: React.FC<LegCardProps> = ({
           </h3>
         </div>
 
-        <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-primary/15 bg-primary/5 text-primary">
+        <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-primary/15 bg-primary/5 text-primary">
           {icon ? icon : <HiArrowTrendingUp className="text-xl" />}
         </div>
       </div>
@@ -34,7 +34,7 @@ const LegCard: React.FC<LegCardProps> = ({
           <Link
             to={href}
             target="_blank"
-            className=" py-2 items-center justify-center rounded-[1.75rem] bg-primary px-8 text-base font-semibold text-white transition hover:brightness-110 inline-flex w-full"
+            className=" py-2 items-center justify-center rounded-xl bg-primary px-8 text-base font-semibold text-white transition hover:brightness-110 inline-flex w-full"
             download={cta === "Download PDF" && true}
           >
             {cta}
@@ -43,7 +43,7 @@ const LegCard: React.FC<LegCardProps> = ({
           <button
             type="button"
             onClick={onClick}
-            className=" py-2 items-center justify-center rounded-[1.75rem] bg-primary px-8 text-base font-semibold text-white transition hover:brightness-110 inline-flex w-full"
+            className=" py-2 items-center justify-center rounded-xl bg-primary px-8 text-base font-semibold text-white transition hover:brightness-110 inline-flex w-full"
           >
             {cta}
           </button>

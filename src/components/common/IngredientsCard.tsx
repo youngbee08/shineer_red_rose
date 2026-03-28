@@ -9,7 +9,7 @@ const IngredientCard: React.FC<IngredientCardProps> = ({
   return (
     <div
       className={`
-        group relative overflow-hidden rounded-3xl
+        group relative overflow-hidden rounded-xl
         shadow-sm transition-all duration-300 ease-out
         hover:shadow-md hover:scale-[1.02] hover:-translate-y-0.5
         aspect-[7/5] sm:aspect-[3/4] md:aspect-[1/1]

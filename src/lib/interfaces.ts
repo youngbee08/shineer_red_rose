@@ -19,6 +19,7 @@ export interface HowItWorksCardProps {
   name: string;
   id: string;
   detail: string;
+  icon?: React.ReactNode;
 }
 export interface IngredientCardProps {
   title: string;

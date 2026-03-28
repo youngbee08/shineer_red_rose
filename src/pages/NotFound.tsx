@@ -6,8 +6,8 @@ const NotFound: React.FC = () => {
   return (
     <div className="min-h-screen bg-neutral-soft/30 flex items-center justify-center px-4">
       <div className="w-full max-w-xl">
-        <div className="rounded-3xl border border-secondary-dark/70 bg-white shadow-xl shadow-black/10 p-6 sm:p-10 text-center">
-          <div className="mx-auto mb-6 h-1.5 w-16 rounded-full bg-primary" />
+        <div className="rounded-xl border border-secondary-dark/70 bg-white shadow-xl shadow-black/10 p-6 sm:p-10 text-center">
+          <div className="mx-auto mb-6 h-1.5 w-16 rounded-xl bg-primary" />
 
           <h1 className="font-display text-6xl sm:text-7xl lg:text-8xl font-extrabold text-primary leading-none">
             404

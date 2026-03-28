@@ -16,24 +16,26 @@ const PaymentStatus: React.FC = () => {
   const navigate = useNavigate();
   const fileRef = useRef<HTMLInputElement | null>(null);
 
-  const [order, setOrder] = useState<PendingOrder | null>(null);
+  const [order, setOrder] = useState<PendingOrder | null>(() => {
+    const raw = sessionStorage.getItem("pendingOrder");
+    if (raw) {
+      try {
+        return JSON.parse(raw);
+      } catch {
+        return null;
+      }
+    }
+    return null;
+  });
   const [receiptFile, setReceiptFile] = useState<File | null>(null);
   const [showUSD, setShowUSD] = useState(true);
 
   useEffect(() => {
-    const raw = sessionStorage.getItem("pendingOrder");
-    if (!raw) {
-      navigate("/purchase-product");
-      return;
-    }
-    try {
-      const parsed: PendingOrder = JSON.parse(raw);
-      setOrder(parsed);
-    } catch {
+    if (!order) {
       sessionStorage.removeItem("pendingOrder");
       navigate("/purchase-product");
     }
-  }, [navigate]);
+  }, [navigate, order]);
 
   const statusUI = useMemo(() => {
     if (!order) return { title: "Loading...", hint: "" };
@@ -102,164 +104,150 @@ const PaymentStatus: React.FC = () => {
   const dateText = dt.toLocaleString();
 
   return (
-    <section className="app-container w-full">
-      <div className="mx-auto w-full max-w-xl mt-13">
-        <div className="p-0">
-          <div className="mx-auto mt-5 flex max-w-3xl flex-col items-center gap-3 text-center">
-            <h1 className="font-display text-xl font-extrabold text-tetiary sm:text-2xl">
-              Payment Update
-            </h1>
-            <p className="text-sm leading-7 text-neutral-soft">
-              Review your current payment status, confirm your order details,
-              and continue on WhatsApp if you still need to share your receipt.
-            </p>
-          </div>
+    <div className="flex flex-col gap-10 lg:gap-14 pb-20 bg-neutral-50/50 min-h-screen">
+      
+      {/* Hero Section */}
+      <section className="relative overflow-hidden bg-linear-to-br from-primary to-primary/80 flex items-center justify-center py-16 text-center lg:py-24 shadow-inner">
+        <div className="relative z-10 flex max-w-3xl flex-col items-center gap-4 px-6 md:gap-5">
+          <h1 className="font-display text-4xl font-extrabold text-white sm:text-5xl lg:text-6xl drop-shadow-md tracking-tight">
+            Order Status
+          </h1>
+          <p className="max-w-xl text-sm leading-relaxed text-white/90 sm:text-base lg:text-lg font-medium drop-shadow-sm">
+            Review your precise payment status and forward your verification receipt straight to our support team.
+          </p>
+        </div>
+      </section>
 
-          <div className="mt-5 rounded-[1.5rem] border border-secondary-dark/60 bg-[#fff7f8] p-5 text-center sm:p-6">
-            <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-primary text-white shadow-[0_12px_28px_-18px_rgba(231,0,11,0.9)]">
-              OK
+      <div className="app-container w-full max-w-2xl flex flex-col gap-8">
+        
+        {/* Status Card */}
+        <div className="rounded-xl border border-primary/10 bg-white p-8 sm:p-10 shadow-xl shadow-primary/5 text-center flex flex-col items-center">
+            <h2 className="font-display text-2xl sm:text-3xl font-black text-neutral-800 tracking-tight mb-3">
+               {statusUI.title}
+            </h2>
+            <p className="text-sm font-medium text-neutral-500 leading-relaxed mx-auto">
+               {statusUI.hint}
+            </p>
+            <div className="mt-5 inline-flex items-center justify-center px-4 py-1.5 rounded-xl bg-neutral-100 text-[11px] font-bold tracking-widest uppercase text-neutral-400">
+               Ref: {order.orderId}-CONF
+            </div>
+        </div>
+
+        {/* Order Details Card */}
+        <div className="rounded-xl border border-primary/10 bg-white p-6 sm:p-8 shadow-xl shadow-primary/5">
+            <div className="flex items-center justify-between border-b border-primary/10 pb-5 mb-5 relative">
+               <h3 className="text-[13px] font-bold uppercase tracking-widest text-neutral-400">
+                  Transaction Summary
+               </h3>
+               <div className="inline-flex rounded-xl bg-neutral-100 p-1 self-start sm:self-auto">
+                 <button
+                   type="button"
+                   onClick={() => setShowUSD(true)}
+                   className={`rounded-xl px-4 py-1.5 text-[11px] font-bold tracking-widest uppercase transition-all ${
+                     showUSD ? "bg-primary text-white shadow-md" : "text-neutral-500 hover:bg-white"
+                   }`}
+                 >
+                   USD
+                 </button>
+                 <button
+                   type="button"
+                   onClick={() => setShowUSD(false)}
+                   className={`rounded-xl px-4 py-1.5 text-[11px] font-bold tracking-widest uppercase transition-all ${
+                     !showUSD ? "bg-primary text-white shadow-md" : "text-neutral-500 hover:bg-white"
+                   }`}
+                 >
+                   NGN
+                 </button>
+               </div>
+            </div>
+            
+            <div className="flex flex-col gap-4 text-sm">
+               <div className="flex items-center justify-between gap-3 bg-neutral-50 p-4 rounded-xl border border-primary/5">
+                 <span className="text-xs font-bold uppercase tracking-wider text-neutral-400">Order Ref</span>
+                 <span className="font-black text-neutral-800 tracking-wide text-base">{order.orderId}</span>
+               </div>
+               
+               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 sm:gap-3 bg-neutral-50 p-4 rounded-xl border border-primary/5">
+                 <span className="text-xs font-bold uppercase tracking-wider text-neutral-400">Date</span>
+                 <span className="font-bold text-neutral-800 text-right">{dateText}</span>
+               </div>
+
+               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 sm:gap-3 bg-neutral-50 p-4 rounded-xl border border-primary/5">
+                 <span className="text-xs font-bold uppercase tracking-wider text-neutral-400">Product</span>
+                 <span className="font-bold text-neutral-800 text-right">{order.productName}</span>
+               </div>
+
+               <div className="flex items-center justify-between gap-3 bg-primary/5 p-4 rounded-xl border border-primary/10">
+                 <span className="text-xs font-bold uppercase tracking-wider text-primary">Final Amount</span>
+                 <div className="text-right">
+                   <p className="font-black text-primary text-lg">
+                     {showUSD ? `$${convertNairaToDollar(order.amount)}` : naira(order.amount)}
+                   </p>
+                   <p className="text-[11px] font-bold text-neutral-400 mt-0.5">
+                     {showUSD ? naira(order.amount) : `$${convertNairaToDollar(order.amount)}`}
+                   </p>
+                 </div>
+               </div>
+            </div>
+        </div>
+
+        {/* Action Card */}
+        <div className="rounded-xl border border-primary/10 bg-white p-6 sm:p-8 shadow-xl shadow-primary/5">
+            <h3 className="text-[13px] font-bold uppercase tracking-widest text-neutral-400 mb-5 border-b border-primary/10 pb-4">
+              Receipt & Verification
+            </h3>
+            
+            <div className="flex flex-col gap-4">
+              <input
+                ref={fileRef}
+                type="file"
+                accept="image/*,application/pdf"
+                className="hidden"
+                onChange={(e) => {
+                  const file = e.target.files?.[0] || null;
+                  setReceiptFile(file);
+                  if (file) {
+                    handleSaveReceiptName(file.name);
+                    toast.success(`Receipt selected: ${file.name}`);
+                  }
+                }}
+              />
+
+              <button
+                type="button"
+                onClick={handlePickReceipt}
+                className="w-full rounded-xl border border-dashed border-primary/40 bg-neutral-50 px-5 py-4 text-sm font-bold tracking-wide text-primary hover:bg-primary/5 transition"
+              >
+                {receiptFile || order.receiptFileName ? "Change Uploaded Receipt" : "Attach Proof of Payment"}
+              </button>
+
+              <a
+                href={buildWhatsAppLink()}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full inline-flex items-center justify-center gap-2 rounded-xl bg-primary px-5 py-5 text-sm uppercase tracking-widest font-black text-white hover:bg-primary/90 transition shadow-lg shadow-primary/20"
+              >
+                <FaWhatsapp className="text-lg" /> Forward to Support
+              </a>
             </div>
 
-            <h1 className="mt-4 font-display text-2xl font-extrabold text-tetiary">
-              {statusUI.title}
-            </h1>
-
-            <p className="mx-auto mt-2 max-w-md text-sm leading-7 text-neutral-soft">
-              {statusUI.hint}
+            <p className="mt-5 text-[12px] text-neutral-400 font-medium text-center leading-relaxed">
+               Attach your receipt image here, and then drop it directly into the WhatsApp chat window to finalize validation.
             </p>
-          </div>
-
-          <div className="mt-6 rounded-2xl border border-secondary-dark/70 bg-white p-4">
-            <div className="flex items-center justify-between gap-3">
-              <p className="text-[11px] font-bold tracking-widest uppercase text-neutral-soft">
-                Order Summary
-              </p>
-              <div className="inline-flex rounded-full border border-secondary-dark/70 bg-secondary/20 p-1">
-                <button
-                  type="button"
-                  onClick={() => setShowUSD(true)}
-                  className={[
-                    "rounded-full px-3 py-1 text-[11px] font-bold uppercase transition",
-                    showUSD ? "bg-primary text-white" : "text-neutral-soft",
-                  ].join(" ")}
-                >
-                  USD
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setShowUSD(false)}
-                  className={[
-                    "rounded-full px-3 py-1 text-[11px] font-bold uppercase transition",
-                    !showUSD ? "bg-primary text-white" : "text-neutral-soft",
-                  ].join(" ")}
-                >
-                  NGN
-                </button>
-              </div>
-            </div>
-
-            <div className="mt-4 grid grid-cols-1 gap-3 text-sm">
-              <div className="flex items-center justify-between gap-3">
-                <span className="text-neutral-soft">Order ID</span>
-                <span className="font-bold text-tetiary">{order.orderId}</span>
-              </div>
-
-              <div className="flex items-center justify-between gap-3">
-                <span className="text-neutral-soft">Product</span>
-                <span className="font-bold text-tetiary">
-                  {order.productName}
-                </span>
-              </div>
-
-              <div className="flex items-center justify-between gap-3">
-                <span className="text-neutral-soft">Amount</span>
-                <div className="text-right">
-                  <p className="font-bold text-tetiary">
-                    {showUSD
-                      ? `$${convertNairaToDollar(order.amount)}`
-                      : naira(order.amount)}
-                  </p>
-                  <p className="text-[11px] text-neutral-soft">
-                    {showUSD
-                      ? naira(order.amount)
-                      : `$${convertNairaToDollar(order.amount)}`}
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex items-center justify-between gap-3">
-                <span className="text-neutral-soft">Date</span>
-                <span className="font-bold text-tetiary">{dateText}</span>
-              </div>
-            </div>
-          </div>
-
-          <div className="mt-5">
-            <input
-              ref={fileRef}
-              type="file"
-              accept="image/*,application/pdf"
-              className="hidden"
-              onChange={(e) => {
-                const file = e.target.files?.[0] || null;
-                setReceiptFile(file);
-                if (file) {
-                  handleSaveReceiptName(file.name);
-                  toast.success(`Receipt selected: ${file.name}`);
-                }
-              }}
-            />
-
-            <button
-              type="button"
-              onClick={handlePickReceipt}
-              className="w-full rounded-xl border border-secondary-dark/70 bg-white px-5 py-3 text-sm font-bold text-tetiary hover:bg-secondary/30 transition"
-            >
-              {receiptFile || order.receiptFileName
-                ? "Change Receipt"
-                : "Upload Receipt"}
-            </button>
-
-            <p className="mt-2 text-[11px] text-neutral-soft text-center">
-              You will select the receipt here, then attach it in WhatsApp.
-            </p>
-          </div>
-
-          <a
-            href={buildWhatsAppLink()}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-primary px-5 py-3 text-sm font-bold text-white shadow-md shadow-black/10 hover:brightness-110 transition"
-          >
-            <FaWhatsapp className="text-lg" />
-            Share Receipt via WhatsApp
-          </a>
-
-          <div className="mt-6">
-            <p className="text-[11px] font-bold tracking-widest uppercase text-neutral-soft text-center">
-              Other options
-            </p>
-
-            <div className="mt-3">
+            
+            <div className="mt-6 pt-6 border-t border-primary/10">
               <button
                 type="button"
                 onClick={handleResetOrder}
-                className="inline-flex items-center justify-center rounded-xl border border-secondary-dark/70 bg-white px-4 py-3 text-xs font-bold text-tetiary hover:bg-secondary/30 transition w-full"
+                className="w-full rounded-xl border border-neutral-200 bg-white px-5 py-4 text-xs font-bold tracking-widest uppercase text-neutral-500 hover:bg-neutral-50 transition shadow-sm"
               >
                 Start New Order
               </button>
             </div>
-          </div>
-
-          <div className="mt-6 text-center">
-            <p className="mt-1 text-[11px] text-neutral-soft">
-              Transaction Ref:{" "}
-              <span className="font-semibold">{order.orderId}-CONF</span>
-            </p>
-          </div>
         </div>
+        
       </div>
-    </section>
+    </div>
   );
 };
 

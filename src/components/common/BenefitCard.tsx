@@ -1,46 +1,31 @@
 import React from "react";
 import type { BenefitCardProps } from "../../lib/interfaces";
 
-const BenefitCard: React.FC<BenefitCardProps> = ({ name, icon, detail }) => {
+const BenefitCard: React.FC<BenefitCardProps> = ({ name, icon, detail}) => {
+
   return (
     <div
       className={`
-        group relative overflow-hidden border border-gray-200/80 
-        bg-white p-6 shadow-sm transition-all duration-300 
-        hover:shadow-md hover:border-gray-300/90 
-        focus-within:shadow-md focus-within:border-gray-300/90
-        md:p-7 rounded-3xl
+        group relative overflow-hidden 
+        p-6 md:p-8 shrink-0 transition-transform duration-300 hover:scale-[1.02]
+        rounded-xl min-w-[270px] md:min-w-[370px] lg:min-w-[470px] h-[40vh] min-h-[300px] max-h-[400px]
+        flex flex-col justify-end shadow-md border border-primary shadow-primary/20
       `}
     >
-      <div className="mb-5 md:mb-0 flex items-start gap-5 lg:flex-row flex-col">
-        <div
-          className={`
-            inline-flex h-14 w-14 shrink-0 items-center justify-center 
-            rounded-lg bg-primary/10 text-primary transition-colors 
-            group-hover:bg-primary/15
-          `}
-        >
-          <div className="text-2xl md:text-3xl">{icon}</div>
-        </div>
+      <div
+        className="absolute top-6 right-6 text-[100px] md:text-[160px] text-primary/20 transition-transform duration-500 group-hover:scale-110 group-hover:-rotate-12"
+      >
+        {icon}
+      </div>
 
-        <div className="flex-1">
-          <h3
-            className={`
-              font-display text-lg font-semibold leading-tight text-gray-900 
-              md:text-xl
-            `}
-          >
-            {name}
-          </h3>
-          <p
-            className={`
-              mt-2.5 text-sm leading-relaxed text-gray-600 
-              md:mt-3 md:text-base
-            `}
-          >
-            {detail}
-          </p>
-        </div>
+      <div className="relative z-10 flex flex-col gap-2">
+        <h3 className="font-display text-4xl md:text-5xl font-extrabold text-primary tracking-tight leading-tight">
+          {name}
+        </h3>
+        
+        <p className="text-primary/70 text-base md:text-lg font-medium leading-relaxed max-w-[90%] mt-2">
+          {detail}
+        </p>
       </div>
     </div>
   );

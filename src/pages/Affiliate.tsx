@@ -11,19 +11,19 @@ const Affiliate: React.FC = () => {
   const values: BenefitCardProps[] = [
     {
       name: "Income-Focused Opportunity",
-      icon: <GiMoneyStack className="text-base" />,
+      icon: <GiMoneyStack />,
       detail:
         "Start with a product people can understand and build income gradually through consistent sharing.",
     },
     {
       name: "Simple Tools to Get Started",
-      icon: <GiToolbox className="text-base" />,
+      icon: <GiToolbox />,
       detail:
         "Use ready-made materials and a clearer structure to begin promoting with more confidence.",
     },
     {
       name: "A Product You Can Stand Behind",
-      icon: <GiCheckMark className="text-base" />,
+      icon: <GiCheckMark />,
       detail:
         "It is easier to recommend a product when the quality story, formula focus, and message feel trustworthy.",
     },
@@ -53,81 +53,82 @@ const Affiliate: React.FC = () => {
   ];
 
   return (
-    <div className="flex flex-col gap-10 lg:gap-14">
-      <section className="bg-primary flex items-center justify-center py-7 text-center lg:py-17">
-        <div className="flex max-w-3xl flex-col gap-2 px-4 lg:gap-3">
-          <h1 className="font-display text-xl font-extrabold text-white sm:text-2xl lg:text-3xl">
-            Build with the RedRose Opportunity
+    <div className="flex flex-col gap-10 lg:gap-14 pb-20">
+      <section className="relative overflow-hidden bg-linear-to-br from-primary to-primary/80 flex items-center justify-center py-16 text-center lg:py-24 shadow-inner">
+        <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-xl blur-3xl translate-x-1/2 -translate-y-1/2" />
+        <div className="absolute bottom-0 left-0 w-64 h-64 bg-black/10 rounded-xl blur-3xl -translate-x-1/2 translate-y-1/2" />
+        
+        <div className="relative z-10 flex max-w-3xl flex-col items-center gap-4 px-6 md:gap-5">
+          <h1 className="font-display text-4xl font-extrabold text-white sm:text-5xl lg:text-6xl drop-shadow-md tracking-tight">
+            The RedRose Opportunity
           </h1>
 
-          <p className="text-xs leading-7 text-white/90 sm:text-sm lg:text-base lg:leading-8">
-            Understand the affiliate opportunity at a glance, what you gain, how
-            to start, and the exact steps to begin earning.{" "}
+          <p className="max-w-2xl text-sm leading-relaxed text-white/90 sm:text-base lg:text-lg font-medium drop-shadow-sm">
+            Understand the affiliate opportunity at a glance. Discover what you gain, how
+            to launch your journey, and the exact steps to begin earning today.
           </p>
         </div>
       </section>
 
-      <div className="app-container flex flex-col gap-10 lg:gap-14">
-        <section className="flex flex-col gap-8 lg:gap-14">
-          <div className="mx-auto flex max-w-3xl flex-col items-center gap-3 text-center">
-            <div className="flex w-full items-center justify-center gap-2">
-              <h2 className="text-2xl font-semibold text-neutral-dark lg:text-4xl">
-                What You Are Joining
-              </h2>
-            </div>
-            <p className="text-center text-sm leading-7 text-neutral-soft">
-              Start here to understand the opportunity before choosing your
-              placement or downloading the compensation details.
+      <div className="app-container flex flex-col gap-12 lg:gap-20">
+        <section className="flex flex-col gap-6 lg:gap-10">
+          <div className="flex max-w-3xl flex-col items-start gap-3 text-left">
+            <h2 className="text-2xl font-semibold text-primary lg:text-4xl tracking-tight">
+              What You Are Joining
+            </h2>
+            <p className="text-left text-sm leading-7 text-neutral-soft">
+              Start here to completely grasp the opportunity before choosing your
+              placement or analyzing the comprehensive compensation details.
             </p>
           </div>
 
-          <div className="flex flex-col lg:items-center justify-between gap-10 lg:flex-row">
-            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:">
-              {[
-                {
-                  title: "Product-Led Entry",
-                  desc: "Begin with a product that is easier to understand, use, and recommend.",
-                },
-                {
-                  title: "Network Growth",
-                  desc: "Grow by sharing your experience and expanding your referral reach steadily.",
-                },
-                {
-                  title: "Structured Placement",
-                  desc: "Choose where you want to enter so your growth strategy feels intentional.",
-                },
-                {
-                  title: "Long-Term Potential",
-                  desc: "Build momentum over time through consistency, trust, and clearer follow-through.",
-                },
-              ].map((item, i) => (
-                <div
-                  key={i}
-                  className="rounded-3xl border border-secondary-dark/60 p-4 transition hover:border-primary"
-                >
-                  <h4 className="text-sm font-semibold text-neutral-dark lg:text-base">
+          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-2 grow">
+            {[
+              {
+                title: "Product-Led Entry",
+                desc: "Begin with a premium product that is intrinsically easier to understand, consume, and recommend.",
+              },
+              {
+                title: "Network Growth",
+                desc: "Elevate your income potential organically by sharing authentic experiences and expanding your referral reach steadily.",
+              },
+              {
+                title: "Structured Placement",
+                desc: "Dictate explicitly where you want to enter the network so your growth strategy always feels utterly intentional.",
+              },
+              {
+                title: "Long-Term Potential",
+                desc: "Manifest deep momentum over time built through total consistency, high trust, and clearer follow-through.",
+              },
+            ].map((item, i) => (
+              <div
+                key={i}
+                className="rounded-xl border border-primary/10 bg-white p-6 md:p-8 shadow-xl shadow-primary/5 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:shadow-primary/10"
+              >
+                <div className="flex flex-col gap-1">
+                  <h4 className="text-base font-bold text-neutral-dark lg:text-lg">
                     {item.title}
                   </h4>
-                  <p className="mt-1 text-xs text-neutral-soft lg:text-sm">
+                  <p className="mt-2 text-sm font-medium leading-relaxed text-neutral-soft">
                     {item.desc}
                   </p>
                 </div>
-              ))}
-            </div>
+              </div>
+            ))}
           </div>
         </section>
 
-        <section className="flex flex-col gap-6 lg:gap-12">
-          <div className="mx-auto max-w-xl text-center">
-            <h2 className="text-2xl font-bold text-neutral-dark lg:text-4xl">
-              Why This Opportunity Is Easy to Share
+        <section className="flex flex-col gap-6 lg:gap-10">
+          <div className="flex max-w-3xl flex-col items-start gap-3 text-left">
+            <h2 className="text-2xl font-semibold text-primary lg:text-4xl tracking-tight">
+              Why This Model Excels
             </h2>
-            <p className="mt-2 text-sm text-neutral-soft lg:text-base">
-              Clear benefits that make it simple to understand, trust, and
-              confidently recommend.
+            <p className="text-left text-sm leading-7 text-neutral-soft">
+              Inherent structural benefits that ensure it remains incredibly simple 
+              to comprehend, embrace, and confidently promote.
             </p>
           </div>
-          <div className="grid grid-cols-1 gap-4 lg:grid-cols-2 lg:gap-4">
+          <div className="flex md:flex-row flex-col gap-4 overflow-x-auto scroll-smooth py-2 scrollbar-thin">
             {values.map((value, index) => (
               <BenefitCard
                 name={value.name}
@@ -139,57 +140,53 @@ const Affiliate: React.FC = () => {
           </div>
         </section>
 
-        <section className="flex flex-col gap-6 lg:gap-12">
-          <div className="mx-auto flex max-w-3xl flex-col items-center gap-3 text-center">
-            <div className="flex w-full items-center justify-center gap-2">
-              <h2 className="text-2xl font-semibold text-neutral-dark lg:text-4xl">
-                Choose Your Placement
-              </h2>
-            </div>
-            <p className="text-center text-sm leading-7 text-neutral-soft">
-              Pick the entry path that best fits the kind of growth strategy you
-              want to build from the start, or download the full compensation
-              plan to see all details.
+        <section className="flex flex-col gap-6 lg:gap-10">
+          <div className="flex max-w-3xl flex-col items-start gap-3 text-left">
+            <h2 className="text-2xl font-semibold text-primary lg:text-4xl tracking-tight">
+              Take Your Position
+            </h2>
+            <p className="text-left text-sm leading-7 text-neutral-soft">
+              Determine the entry path that meticulously aligns with the specific growth strategy you
+              envision right from the starting line.
             </p>
           </div>
+          
           <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
             <LegCard
               title="Left Leg"
-              description="Position yourself in the primary spillover leg for maximum team momentum."
+              description="Position yourself decisively into the primary spillover leg for maximized team momentum."
               cta="Join Left Leg"
-              href="https://www.affluenceglobaldream.com/en/olawolu66/us/agl/ref-member/LEFT"
+              href="https://www.affluenceglobaldream.com/en/orente12/us/agl/ref-member/LEFT"
             />
 
             <LegCard
               title="Right Leg"
-              description="Ideal for balanced team building and effectively maximizing personal bonus overrides."
+              description="Ideal for constructing a highly balanced organization and successfully amplifying personal bonus overrides."
               cta="Join Right Leg"
-              href="https://www.affluenceglobaldream.com/en/olawolu66/us/agl/ref-member/RIGHT"
+              href="https://www.affluenceglobaldream.com/en/orente12/us/agl/ref-member/RIGHT"
             />
 
             <LegCard
               title="Compensation Guide"
-              description="See the reward structure clearly and download the full guide to make an informed decision."
-              cta="Download PDF"
+              description="Examine the complete reward framework intimately in the detailed guide to make an informed decision."
+              cta="Download PDF Document"
               href="/complan.pdf"
               icon={<HiOutlineDocumentText className="text-xl" />}
             />
           </div>
         </section>
 
-        <section className="flex flex-col gap-6 lg:gap-12">
-          <div className="mx-auto flex max-w-3xl flex-col items-center gap-3 text-center">
-            <div className="flex w-full items-center justify-center gap-2">
-              <h2 className="text-2xl font-semibold text-neutral-dark lg:text-4xl">
-                Common Questions
-              </h2>
-            </div>
-            <p className="text-center text-sm leading-7 text-neutral-soft">
-              Answer the usual questions first so visitors know what to expect
-              before they take action.
+        <section className="flex flex-col gap-6 lg:gap-12 pl-2">
+          <div className="flex max-w-3xl flex-col items-start gap-3 text-left">
+            <h2 className="text-2xl font-semibold text-primary lg:text-4xl tracking-tight">
+              Essential Explanations
+            </h2>
+            <p className="text-left text-sm leading-7 text-neutral-soft">
+              Resolving the customary queries upfront guarantees every aspiring affiliate proceeds with 
+              unwavering confidence.
             </p>
           </div>
-          <div className="mx-auto flex w-full flex-col gap-3">
+          <div className="w-full max-w-4xl flex flex-col gap-4 sm:gap-5 mt-2">
             {faqs.map((faq) => (
               <FaqCard
                 key={faq.question}

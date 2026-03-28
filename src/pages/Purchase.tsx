@@ -137,209 +137,166 @@ const PurchasePage: React.FC = () => {
   };
 
   return (
-    <section className="app-container w-full">
-      <div className="mx-auto w-full max-w-xl mt-13">
-        <div className="p-0">
-          <div className="mx-auto flex max-w-3xl flex-col items-center gap-3 text-center">
-            <h1 className="font-display text-xl font-extrabold text-tetiary sm:text-2xl">
-              Complete Your Order
-            </h1>
-            <p className="text-sm leading-7 text-neutral-soft">
-              Follow the steps below: confirm your package, make payment, then
-              send your receipt on WhatsApp for verification.
-            </p>
-          </div>
+    <div className="flex flex-col gap-10 lg:gap-14 pb-20 bg-neutral-50/50 min-h-screen">
+      
+      {/* Hero Section */}
+      <section className="relative overflow-hidden bg-linear-to-br from-primary to-primary/80 flex items-center justify-center py-16 text-center lg:py-24 shadow-inner">
+        <div className="relative z-10 flex max-w-3xl flex-col items-center gap-4 px-6 md:gap-5">
+          <h1 className="font-display text-4xl font-extrabold text-white sm:text-5xl lg:text-6xl drop-shadow-md tracking-tight">
+            Secure Checkout
+          </h1>
+          <p className="max-w-xl text-sm leading-relaxed text-white/90 sm:text-base lg:text-lg font-medium drop-shadow-sm">
+            Confirm your package details, complete your payment securely, and submit your receipt for rapid verification.
+          </p>
+        </div>
+      </section>
 
-          <div className="mt-5 rounded-2xl border border-secondary-dark/70 bg-white p-4">
-            <div className="mb-3 flex items-center justify-between gap-3">
-              <p className="text-sm font-bold text-tetiary">{productName}</p>
-              <div className="inline-flex rounded-full border border-secondary-dark/70 bg-secondary/20 p-1">
-                <button
-                  type="button"
-                  onClick={() => setShowUSD(true)}
-                  className={[
-                    "rounded-full px-3 py-1 text-[11px] font-bold uppercase transition",
-                    showUSD ? "bg-primary text-white" : "text-neutral-soft",
-                  ].join(" ")}
-                >
-                  USD
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setShowUSD(false)}
-                  className={[
-                    "rounded-full px-3 py-1 text-[11px] font-bold uppercase transition",
-                    !showUSD ? "bg-primary text-white" : "text-neutral-soft",
-                  ].join(" ")}
-                >
-                  NGN
-                </button>
-              </div>
-            </div>
-            <div className="flex flex-col gap-1">
-              <p className="text-xs text-neutral-soft">
-                Unit Price:{" "}
-                <span className="font-semibold text-tetiary">
-                  {showUSD
-                    ? `$${convertNairaToDollar(unitPrice)}`
-                    : naira(unitPrice)}
-                </span>
-              </p>
-              <p className="text-xs text-neutral-soft">
-                Alternate Price:{" "}
-                <span className="font-semibold text-tetiary">
-                  {showUSD
-                    ? naira(unitPrice)
-                    : `$${convertNairaToDollar(unitPrice)}`}
-                </span>
-              </p>
-            </div>
-          </div>
-
-          <div className="mt-6">
-            <h2 className="text-sm font-bold tracking-widest uppercase text-neutral-soft">
-              Shipping Information
+      <div className="app-container w-full max-w-3xl flex flex-col gap-8">
+        
+        {/* Product Review Card */}
+        <div className="rounded-xl border border-primary/10 bg-white p-6 sm:p-8 shadow-xl shadow-primary/5 transition-all">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between border-b border-primary/10 pb-5 mb-5 gap-4">
+            <h2 className="text-xl font-bold text-neutral-dark inline-flex items-center gap-3">
+              <span className="h-3 w-3 rounded-xl bg-primary"></span>
+              {productName}
             </h2>
-
-            <div className="mt-4 grid grid-cols-1 gap-4">
-              <div>
-                <label className="text-[11px] font-bold tracking-widest uppercase text-neutral-soft">
-                  Full name
-                </label>
-                <input
-                  value={fullName}
-                  onChange={(e) => setFullName(e.target.value)}
-                  placeholder="Jane Doe"
-                  className="mt-2 w-full rounded-xl border border-secondary-dark/70 bg-white px-4 py-3 text-sm outline-none focus:border-primary"
-                />
-              </div>
-
-              <div>
-                <label className="text-[11px] font-bold tracking-widest uppercase text-neutral-soft">
-                  Delivery address
-                </label>
-                <input
-                  value={address}
-                  onChange={(e) => setAddress(e.target.value)}
-                  placeholder="Street, City, State"
-                  className="mt-2 w-full rounded-xl border border-secondary-dark/70 bg-white px-4 py-3 text-sm outline-none focus:border-primary"
-                />
-              </div>
+            <div className="inline-flex rounded-xl bg-neutral-100 p-1.5 self-start sm:self-auto">
+              <button
+                type="button"
+                onClick={() => setShowUSD(true)}
+                className={`rounded-xl px-5 py-2 text-xs font-bold tracking-widest uppercase transition-all ${
+                  showUSD ? "bg-primary text-white shadow-md" : "text-neutral-500 hover:bg-white"
+                }`}
+              >
+                USD
+              </button>
+              <button
+                type="button"
+                onClick={() => setShowUSD(false)}
+                className={`rounded-xl px-5 py-2 text-xs font-bold tracking-widest uppercase transition-all ${
+                  !showUSD ? "bg-primary text-white shadow-md" : "text-neutral-500 hover:bg-white"
+                }`}
+              >
+                NGN
+              </button>
             </div>
           </div>
-
-          <div className="mt-6 rounded-2xl border border-secondary-dark/70 bg-white p-4">
-            <div className="flex items-center justify-between gap-3">
-              <div>
-                <p className="text-sm font-bold text-tetiary">Quantity</p>
-                <p className="text-xs text-neutral-soft">
-                  Adjust based on what you want to order
-                </p>
-              </div>
-
-              <div className="flex items-center gap-2">
+          
+          <div className="grid grid-cols-2 gap-6 items-end">
+            <div className="flex flex-col gap-1">
+              <p className="text-[11px] font-bold text-neutral-400 uppercase tracking-widest">Base Price</p>
+              <p className="text-xl md:text-2xl font-black text-neutral-800 tracking-tight">
+                {showUSD ? `$${convertNairaToDollar(unitPrice)}` : naira(unitPrice)}
+              </p>
+            </div>
+            
+            <div className="flex flex-col items-end gap-1">
+              <p className="text-[11px] font-bold text-neutral-400 uppercase tracking-widest">Quantity</p>
+              <div className="inline-flex items-center bg-neutral-50 rounded-xl border border-primary/10">
                 <button
                   onClick={() => setQty((q) => Math.max(1, q - 1))}
-                  className="h-10 w-10 rounded-xl border border-secondary-dark/70 hover:bg-secondary/30 transition font-bold"
-                  aria-label="Decrease quantity"
+                  className="h-11 w-11 flex items-center justify-center text-xl text-neutral-500 hover:text-primary hover:bg-neutral-100 transition rounded-l-xl"
                 >
                   −
                 </button>
-                <div className="w-10 text-center font-bold text-tetiary">
-                  {qty}
-                </div>
+                <div className="w-10 text-center font-bold text-neutral-800">{qty}</div>
                 <button
                   onClick={() => setQty((q) => q + 1)}
-                  className="h-10 w-10 rounded-xl border border-secondary-dark/70 hover:bg-secondary/30 transition font-bold"
-                  aria-label="Increase quantity"
+                  className="h-11 w-11 flex items-center justify-center text-xl text-neutral-500 hover:text-primary hover:bg-neutral-100 transition rounded-r-xl"
                 >
                   +
                 </button>
               </div>
             </div>
           </div>
+        </div>
 
-          <div className="mt-6 rounded-2xl border border-primary/40 bg-primary/5 p-3 sm:p-4 md:p-6">
-            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 sm:gap-3">
-              <p className="text-sm sm:text-base font-bold text-tetiary">
-                Bank Transfer Details
-              </p>
+        {/* Shipping Information Card */}
+        <div className="rounded-xl border border-primary/10 bg-white p-6 sm:p-8 shadow-xl shadow-primary/5">
+          <h2 className="text-lg font-bold text-neutral-dark mb-5 border-b border-primary/10 pb-4">
+            Shipping Information
+          </h2>
+          <div className="flex flex-col gap-5">
+            <div>
+              <label className="block text-xs font-bold tracking-widest uppercase text-primary mb-2 ml-1">
+                Full Name *
+              </label>
+              <input
+                value={fullName}
+                onChange={(e) => setFullName(e.target.value)}
+                placeholder="Ex. Jane Doe"
+                className="w-full rounded-xl border border-primary/10 bg-neutral-50 px-5 py-4 text-sm font-medium text-neutral-dark outline-none focus:ring-4 focus:ring-primary/5 transition-all"
+              />
             </div>
-
-            <div className="mt-4 rounded-xl border border-primary/40 bg-white p-3 sm:p-4 md:p-5">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
-                <div>
-                  <p className="text-[10px] sm:text-[11px] font-bold tracking-widest uppercase text-neutral-soft">
-                    Bank name
-                  </p>
-                  <p className="mt-1 text-sm sm:text-base font-bold text-tetiary break-words">
-                    {BANK_DETAILS.bankName}
-                  </p>
-                </div>
-
-                <div>
-                  <p className="text-[10px] sm:text-[11px] font-bold tracking-widest uppercase text-neutral-soft">
-                    Branch
-                  </p>
-                  <p className="mt-1 text-sm sm:text-base font-bold text-tetiary uppercase break-words">
-                    {BANK_DETAILS.branch}
-                  </p>
-                </div>
-              </div>
-
-              <div className="mt-4">
-                <p className="text-[10px] sm:text-[11px] font-bold tracking-widest uppercase text-neutral-soft">
-                  Account name
-                </p>
-                <p className="mt-1 text-sm sm:text-base font-bold text-tetiary break-words">
-                  {BANK_DETAILS.accountName}
-                </p>
-              </div>
-
-              <div className="mt-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 rounded-xl border border-secondary-dark/70 bg-secondary/20 p-3 sm:p-4">
-                <div>
-                  <p className="text-[10px] sm:text-[11px] font-bold tracking-widest uppercase text-neutral-soft">
-                    {showUSD ? "Zelle Email" : "Account Number"}
-                  </p>
-                  <p className="mt-1 text-base sm:text-lg font-extrabold text-tetiary tracking-wide break-all">
-                    {BANK_DETAILS.accountNumber}
-                  </p>
-                </div>
-
-                <button
-                  type="button"
-                  onClick={handleCopyAccountNumber}
-                  className="w-full sm:w-auto shrink-0 inline-flex items-center justify-center gap-2 rounded-xl border border-secondary-dark/70 bg-white px-3 sm:px-4 py-2 text-xs sm:text-sm font-bold text-tetiary hover:bg-secondary/30 transition"
-                >
-                  <HiOutlineClipboardCopy className="hidden sm:flex text-base sm:text-lg" />
-                  Copy
-                </button>
-              </div>
-
-              <p className="mt-4 text-[11px] sm:text-xs text-neutral-soft">
-                Please include your name in the transfer description.
-              </p>
+            <div>
+              <label className="block text-xs font-bold tracking-widest uppercase text-primary mb-2 ml-1">
+                Delivery Address *
+              </label>
+              <input
+                value={address}
+                onChange={(e) => setAddress(e.target.value)}
+                placeholder="Street, City, State, ZIP"
+                className="w-full rounded-xl border border-primary/10 bg-neutral-50 px-5 py-4 text-sm font-medium text-neutral-dark outline-none focus:ring-4 focus:ring-primary/5 transition-all"
+              />
             </div>
           </div>
-          <div className="mt-6 flex items-center justify-between">
-            <div>
-              <p className="text-sm font-bold text-neutral-soft">
-                Total Amount to Pay
+        </div>
+
+        {/* Bank Transfer Details */}
+        <div className="rounded-xl border border-primary/10 bg-white p-6 sm:p-8 shadow-xl shadow-primary/5">
+          <h2 className="text-lg font-bold text-neutral-dark mb-5 border-b border-primary/10 pb-4">
+            Transfer Instructions
+          </h2>
+          
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-5">
+            <div className="rounded-xl bg-neutral-50 p-5 border border-primary/5">
+              <p className="text-[11px] font-bold uppercase text-neutral-400 tracking-widest">Bank Name</p>
+              <p className="text-sm md:text-base font-bold text-neutral-800 mt-2">{BANK_DETAILS.bankName}</p>
+            </div>
+            <div className="rounded-xl bg-neutral-50 p-5 border border-primary/5">
+              <p className="text-[11px] font-bold uppercase text-neutral-400 tracking-widest">Branch</p>
+              <p className="text-sm md:text-base font-bold text-neutral-800 mt-2">{BANK_DETAILS.branch}</p>
+            </div>
+            <div className="rounded-xl bg-neutral-50 p-5 border border-primary/5 sm:col-span-2">
+              <p className="text-[11px] font-bold uppercase text-neutral-400 tracking-widest">Account Name</p>
+              <p className="text-sm md:text-base font-bold text-neutral-800 mt-2">{BANK_DETAILS.accountName}</p>
+            </div>
+          </div>
+
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-5 rounded-xl bg-primary p-6 shadow-lg shadow-primary/10">
+            <div className="flex-1 overflow-hidden">
+              <p className="text-[11px] font-bold uppercase text-white/80 tracking-widest">
+                {showUSD ? "Transfer ID (Zelle)" : "Account Number"}
               </p>
-              <p className="mt-1 text-xs text-neutral-soft">
-                {showUSD
-                  ? naira(getAltPrice(amount))
-                  : `$${getAltPrice(convertNairaToDollar(amount))}`}
+              <p className="text-xl md:text-2xl font-black text-white mt-1.5 truncate">
+                {BANK_DETAILS.accountNumber}
               </p>
             </div>
-            <p className="font-display text-xl font-extrabold text-primary">
-              {showUSD
-                ? `$${getAltPrice(convertNairaToDollar(amount))}`
-                : naira(getAltPrice(amount))}
+            <button
+              onClick={handleCopyAccountNumber}
+              className="inline-flex shrink-0 items-center justify-center gap-2 rounded-xl bg-white px-6 py-3.5 text-sm font-bold tracking-wide text-primary hover:bg-neutral-100 transition shadow-sm w-full sm:w-auto"
+            >
+              <HiOutlineClipboardCopy className="text-lg" /> Copy Details
+            </button>
+          </div>
+          <p className="text-center text-[13px] text-neutral-500 font-medium mt-5">
+             Ensure you include your full name within the transfer description.
+          </p>
+        </div>
+
+        {/* Action Panel */}
+        <div className="rounded-xl border border-primary/10 bg-white p-6 sm:p-8 shadow-xl shadow-primary/5">
+          <div className="flex items-center justify-between border-b border-primary/10 pb-6 mb-6">
+            <p className="text-xs md:text-sm font-bold uppercase text-neutral-500 tracking-widest">
+              Total Amount
+            </p>
+            <p className="text-2xl md:text-4xl font-black text-primary tracking-tight">
+              {showUSD ? `$${getAltPrice(convertNairaToDollar(amount))}` : naira(getAltPrice(amount))}
             </p>
           </div>
-          <div className="mt-5">
-            <input
+
+          <div className="flex flex-col gap-4">
+             <input
               ref={fileRef}
               type="file"
               accept="image/*,application/pdf"
@@ -349,33 +306,30 @@ const PurchasePage: React.FC = () => {
                 setReceiptFile(file);
                 if (file) toast.success(`Receipt selected: ${file.name}`);
               }}
-            />
-            <button
+             />
+             <button
+               type="button"
+               onClick={handlePickReceipt}
+               className="w-full rounded-xl border border-dashed border-primary/40 bg-neutral-50 px-5 py-4 text-sm font-bold tracking-wide text-primary hover:bg-primary/5 transition"
+             >
+               {receiptFile ? "Change Receipt Attachment" : "Attach Proof of Payment"}
+             </button>
+
+             <button
               type="button"
-              onClick={handlePickReceipt}
-              className="w-full rounded-xl border border-secondary-dark/70 bg-white px-5 py-3 text-sm font-bold text-tetiary hover:bg-secondary/30 transition"
-            >
-              {receiptFile ? "Change Receipt" : "Upload Receipt"}
-            </button>
-            <p className="mt-2 text-xs text-neutral-soft">
-              You'll upload/select the receipt here, then you'll attach it in
-              WhatsApp.
-            </p>
+              onClick={handleSubmit}
+              className="w-full rounded-xl bg-primary px-5 py-5 text-sm uppercase tracking-[0.2em] font-black text-white hover:bg-primary/90 transition shadow-lg shadow-primary/20"
+             >
+              Confirm & Continue
+             </button>
           </div>
-          <button
-            type="button"
-            onClick={handleSubmit}
-            className="mt-5 w-full rounded-4xl bg-primary px-5 py-3 text-sm font-bold text-white shadow-md shadow-black/10 hover:brightness-110 transition"
-          >
-            Submit & Continue on WhatsApp
-          </button>
-          <p className="mt-3 text-[11px] text-neutral-soft text-center">
-            After sending your receipt, your order status will remain{" "}
-            <b>Pending</b> until verification is completed.
+          <p className="text-center text-[12px] text-neutral-400 font-medium mt-5 leading-relaxed">
+             Post-submission, your order status remains <span className="font-bold text-neutral-500">Pending</span> until verification completes successfully on WhatsApp.
           </p>
         </div>
+
       </div>
-    </section>
+    </div>
   );
 };
 
